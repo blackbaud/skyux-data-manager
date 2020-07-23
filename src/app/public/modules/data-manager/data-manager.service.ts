@@ -4,6 +4,10 @@ import {
 } from '@angular/core';
 
 import {
+  SkyUIConfigService
+} from '@skyux/core';
+
+import {
   BehaviorSubject,
   Observable,
   ReplaySubject,
@@ -16,10 +20,6 @@ import {
   take,
   takeUntil
 } from 'rxjs/operators';
-
-import {
-  SkyUIConfigService
-} from '@skyux/core';
 
 import {
   SkyDataManagerConfig

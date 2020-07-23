@@ -28,6 +28,12 @@ import {
 } from '@skyux/layout';
 
 import {
+  SkyFilterModule,
+  SkyRepeaterModule,
+  SkySortModule
+} from '@skyux/lists';
+
+import {
   SkySearchModule
 } from '@skyux/lookup';
 
@@ -36,10 +42,8 @@ import {
 } from '@skyux/modals';
 
 import {
-  SkyFilterModule,
-  SkyRepeaterModule,
-  SkySortModule
-} from '@skyux/lists';
+  SkyDataManagerResourcesModule
+} from '../shared/data-manager-resources.module';
 
 import {
   SkyDataManagerColumnPickerComponent
@@ -51,15 +55,15 @@ import {
 
 import {
   SkyDataManagerToolbarLeftItemsComponent
-} from './data-manager-toolbar/data-manager-toolbar-left-items/data-manager-toolbar-left-items.component';
+} from './data-manager-toolbar/data-manager-toolbar-left-items.component';
 
 import {
   SkyDataManagerToolbarRightItemsComponent
-} from './data-manager-toolbar/data-manager-toolbar-right-items/data-manager-toolbar-right-items.component';
+} from './data-manager-toolbar/data-manager-toolbar-right-items.component';
 
 import {
   SkyDataManagerToolbarSectionComponent
-} from './data-manager-toolbar/data-manager-toolbar-section/data-manager-toolbar-section.component';
+} from './data-manager-toolbar/data-manager-toolbar-section.component';
 
 import {
   SkyDataManagerToolbarComponent
@@ -68,7 +72,6 @@ import {
 import {
   SkyDataViewComponent
 } from './data-view.component';
-import { SkyDataManagerResourcesModule } from '../shared/data-manager-resources.module';
 
 @NgModule({
   declarations: [
