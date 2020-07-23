@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/@skyux/config/skyuxconfig-schema.json",
+  "name": "skyux-data-manager",
+  "mode": "easy",
+  "compileMode": "aot",
+  "plugins": [
+    "@skyux-sdk/builder-plugin-skyux"
+  ],
+  "app": {
+    "styles": [
+      "@skyux/docs-tools/css/docs-tools.css"
+    ],
+    "theming": {
+      "supportedThemes": [
+        "default",
+        "modern"
+      ],
+      "theme": "default"
+    }
+  },
+  "librarySettings": {
+    "whitelistedNonPeerDependencies": []
+  },
+  "testSettings": {
+    "e2e": {
+      "browserSet": "speedy"
+    },
+    "unit": {
+      "browserSet": "paranoid"
+    }
+  },
+  "host": {
+    "frameOptions": {
+      "none": true
+    }
+  }
+}
