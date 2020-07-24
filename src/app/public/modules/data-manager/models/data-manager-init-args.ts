@@ -6,7 +6,7 @@ import {
   SkyDataManagerState
 } from './data-manager-state';
 
-export interface SkyInitDataManagerArgs {
+export interface SkyDataManagerInitArgs {
   /**
    * The initial active view's ID.
    * @required

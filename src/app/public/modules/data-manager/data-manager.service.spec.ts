@@ -34,11 +34,11 @@ import {
 } from './fixtures/data-manager-repeater-view.component.fixture';
 
 import {
+  SkyDataManagerConfig,
+  SkyDataManagerInitArgs,
   SkyDataManagerModule,
   SkyDataManagerService,
-  SkyDataManagerConfig,
-  SkyDataManagerState,
-  SkyInitDataManagerArgs
+  SkyDataManagerState
 } from '../../public_api';
 
 describe('SkyDataManagerService', () => {
@@ -75,7 +75,7 @@ describe('SkyDataManagerService', () => {
   describe('initDataManager', () => {
     let dataConfig: SkyDataManagerConfig;
     let activeViewId: string;
-    let initArgs: SkyInitDataManagerArgs;
+    let initArgs: SkyDataManagerInitArgs;
 
     beforeEach(() => {
       dataConfig = { additionalOptions: { data: 'test' } };

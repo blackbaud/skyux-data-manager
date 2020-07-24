@@ -46,8 +46,8 @@ import {
 } from './models/data-view-state';
 
 import {
-  SkyInitDataManagerArgs
-} from './models/init-data-manager-args';
+  SkyDataManagerInitArgs
+} from './models/data-manager-init-args';
 
 /**
  * The data manager service provides ways for data views, toolbar items, and more to stay up to date
@@ -97,7 +97,7 @@ export class SkyDataManagerService implements OnDestroy {
    * If a settings key is provided, it will check for a saved data state in the SKY UI config service before using the default data state
    * and save any state changes to the service.
    */
-  public initDataManager(args: SkyInitDataManagerArgs): void {
+  public initDataManager(args: SkyDataManagerInitArgs): void {
     const defaultDataState = args.defaultDataState;
     const settingsKey = args.settingsKey;
 
