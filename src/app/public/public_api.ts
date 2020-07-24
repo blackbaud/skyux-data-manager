@@ -8,4 +8,3 @@ export * from './modules/data-manager/models/data-manager-sort-option';
 export * from './modules/data-manager/models/data-manager-state';
 export * from './modules/data-manager/models/data-view-config';
 export * from './modules/data-manager/models/data-view-state';
-
