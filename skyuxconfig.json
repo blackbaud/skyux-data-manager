@@ -8,7 +8,8 @@
   ],
   "app": {
     "styles": [
-      "@skyux/docs-tools/css/docs-tools.css"
+      "@skyux/docs-tools/css/docs-tools.css",
+      "@skyux/ag-grid/css/sky-ag-grid.css"
     ],
     "theming": {
       "supportedThemes": [

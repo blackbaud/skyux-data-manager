@@ -62,6 +62,34 @@ export class DataManagerDemoComponent implements OnInit {
 
   public dataState: SkyDataManagerState;
 
+  public get dataStateString(): string {
+    const tab = `\u00A0\u00A0`;
+    const doubleTab = `${tab}${tab}`;
+
+    const activeSortOption = this.dataState.activeSortOption && `{
+      ${doubleTab}descending: ${this.dataState.activeSortOption.descending},
+      ${doubleTab}id: ${this.dataState.activeSortOption.id},
+      ${doubleTab}label: ${this.dataState.activeSortOption.label},
+      ${doubleTab}propertyName: ${this.dataState.activeSortOption.propertyName}
+      ${tab}}`;
+
+    const filterData = this.dataState.filterData && `{
+      ${doubleTab}fruitType: ${this.dataState.filterData.filters.type},
+      ${doubleTab}hideOrange: ${this.dataState.filterData.filters.hideOrange}
+      ${tab}}`;
+
+    return `
+    {
+      ${tab}activeSortOption: ${activeSortOption},
+      ${tab}additionalData: ${this.dataState.additionalData},
+      ${tab}filterData: ${filterData},
+      ${tab}onlyShowSelected: ${this.dataState.onlyShowSelected},
+      ${tab}searchText: ${this.dataState.searchText},
+      ${tab}selectedIds: ${this.dataState.selectedIds && `[${this.dataState.selectedIds.join(', ')}]`}
+    }
+    `;
+  }
+
   public items: any[] = [
     {
       id: '1',

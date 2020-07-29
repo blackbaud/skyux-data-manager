@@ -42,16 +42,20 @@ import {
 import {
   DataManagerFiltersModalDemoComponent
 } from './data-filter-modal.component';
-import { DataViewCardsDemoComponent } from './data-view-cards.component';
-import { DataViewGridDemoComponent } from './data-view-grid.component';
-import { DataViewRepeaterDemoComponent } from './data-view-repeater.component';
+
+import {
+  DataViewCardsDemoComponent
+} from './data-view-cards.component';
+
+import {
+  DataViewRepeaterDemoComponent
+} from './data-view-repeater.component';
 
 @NgModule({
   declarations: [
     DataManagerDemoComponent,
     DataManagerFiltersModalDemoComponent,
     DataViewCardsDemoComponent,
-    DataViewGridDemoComponent,
     DataViewRepeaterDemoComponent
   ],
   imports: [

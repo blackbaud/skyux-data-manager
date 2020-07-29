@@ -29,6 +29,11 @@
       Similarly, the state includes information that could apply across all views or to a specific view. Options that dictate <b>what</b> data is displayed are in the SkyDataManagerState because the data that is displayed should be the same across views. Options that dictate <b>how</b> data is displayed (for example, what columns to show) are in the SkyDataViewState objects.
       For example, if you are displaying constituents in a grid view and a map view, the same constituents should be in both views, but columns or whether or not the sort button should be displayed is determined by the view.
     </p>
+
+    <h2>Usage with data entry grid</h2>
+    <p>
+      If you're using a data entry grid component within the data manager component there is a directive skyAgGridDataManagerAdapter that will manage some of the interactions between the grid and the data manager service that are typically the same across grid uses. The directive can be added to the `sky-data-view` element containing the grid. It will initialize and keep up to date the columns listed as visible in the data state, update the data state when the columns are moved or changed within the grid, initialize and keep up to date the selected rows from the data state, update the data state when row selection changes within the grid, and update the data state when the sort is changed within the grid.
+    </p>
   </div>
 
   <sky-docs-code-examples
@@ -41,7 +46,8 @@
       '@skyux/inline-form': '*',
       '@skyux/layout': '*',
       '@skyux/lists': '*',
-      '@skyux/lookup': '*'
+      '@skyux/lookup': '*',
+      '@skyux/theme': '*'
     }"
   >
     <sky-docs-code-example
