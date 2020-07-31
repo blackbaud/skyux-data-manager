@@ -14,13 +14,13 @@ export interface SkyDataManagerConfig {
   additionalOptions?: any;
   /**
    * The modal component to launch when the filter button is selected. The same filter options are
-   * used for all views, but views can indicate via `SkyDataViewConfig` whether or not to display
+   * used for all views, but views can use `SkyDataViewConfig` to indicate whether to display
    * the filter button. The modal receives the `filterData` in the data state as context.
    */
   filterModalComponent?: any;
   /**
    * The sort options displayed in the sort dropdown. The same sort options are used for all views,
-   * but views can indicate via `SkyDataViewConfig` whether to display the sort button.
+   * but views can use `SkyDataViewConfig` to indicate whether to display the sort button.
    */
   sortOptions?: SkyDataManagerSortOption[];
 }

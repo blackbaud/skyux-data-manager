@@ -192,7 +192,7 @@ export class SkyDataManagerService implements OnDestroy {
    * @param state The new `SkyDataManagerState` value.
    * @param sourceId The ID of the entity updating the state. This can be any value you choose,
    * but should be unique within the data manager instance and should also be used when that entity
-   * subscribes to state changes via `getDataStateUpdates`.
+   * subscribes to state changes from `getDataStateUpdates`.
    */
   public updateDataState(state: SkyDataManagerState, sourceId: string): void {
     const dataState = this.dataStateChange as BehaviorSubject<SkyDataManagerStateChange>;
