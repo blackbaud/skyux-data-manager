@@ -224,12 +224,14 @@ export class SkyDataManagerToolbarComponent implements OnDestroy, OnInit {
   }
 
   public selectAll(): void {
+    /* istanbul ignore else */
     if (this.activeView.onSelectAllClick) {
       this.activeView.onSelectAllClick();
     }
   }
 
   public clearAll(): void {
+    /* istanbul ignore else */
     if (this.activeView.onClearAllClick) {
       this.activeView.onClearAllClick();
     }

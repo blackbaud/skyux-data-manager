@@ -1,4 +1,8 @@
 import {
+  AgGridModule
+} from 'ag-grid-angular';
+
+import {
   NgModule
 } from '@angular/core';
 
@@ -11,6 +15,11 @@ import {
 } from '@skyux/ag-grid';
 
 import {
+  SkyCardModule,
+  SkyToolbarModule
+} from '@skyux/layout';
+
+import {
   SkyCheckboxModule
 } from '@skyux/forms';
 
@@ -19,21 +28,12 @@ import {
 } from '@skyux/data-manager';
 
 import {
-  SkyCardModule,
-  SkyToolbarModule
-} from '@skyux/layout';
-
-import {
-  SkyRepeaterModule
-} from '@skyux/lists';
-
-import {
   SkyModalModule
 } from '@skyux/modals';
 
 import {
-  AgGridModule
-} from 'ag-grid-angular';
+  SkyRepeaterModule
+} from '@skyux/lists';
 
 import {
   DataManagerDemoComponent
