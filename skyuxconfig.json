@@ -33,6 +33,7 @@
   "host": {
     "frameOptions": {
       "none": true
-    }
+    },
+    "url": "https://developer.blackbaud.com"
   }
 }
