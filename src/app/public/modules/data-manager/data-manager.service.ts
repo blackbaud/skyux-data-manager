@@ -60,19 +60,13 @@ import {
 @Injectable()
 export class SkyDataManagerService implements OnDestroy {
 
-  /**
-   * Indicates if the data manager was initialized with configs and state.
-   */
-  public isInitialized = false;
-
-  private readonly activeViewId: ReplaySubject<string> = new ReplaySubject<string>();
+  private readonly activeViewId: ReplaySubject<string> = new ReplaySubject<string>(1);
 
   private readonly dataManagerConfig = new BehaviorSubject<SkyDataManagerConfig>(undefined);
 
   private readonly views = new BehaviorSubject<SkyDataViewConfig[]>([]);
 
-  private readonly dataStateChange =
-    new BehaviorSubject<SkyDataManagerStateChange>(new SkyDataManagerStateChange(new SkyDataManagerState({}), 'defaultState'));
+  private readonly dataStateChange = new ReplaySubject<SkyDataManagerStateChange>(1);
 
   private _ngUnsubscribe = new Subject();
   private _initSource = 'dataManagerServiceInit';
@@ -109,6 +103,7 @@ export class SkyDataManagerService implements OnDestroy {
         .pipe(take(1))
         .subscribe((config: SkyDataManagerStateOptions) => {
           this.updateDataState(new SkyDataManagerState(config), this._initSource);
+
         });
     } else {
       this.updateDataState(defaultDataState, this._initSource);
@@ -132,8 +127,6 @@ export class SkyDataManagerService implements OnDestroy {
             );
         });
     }
-
-    this.isInitialized = true;
   }
 
   /**
@@ -152,23 +145,19 @@ export class SkyDataManagerService implements OnDestroy {
       this.activeViewId.next(id);
     });
 
-    const dataState = this.getCurrentDataState();
-    const currentViewState = dataState.getViewStateById(viewConfig.id);
+    this.dataStateChange.pipe(take(1)).subscribe(change => {
+      const dataState = change.dataState;
+      const currentViewState = dataState.getViewStateById(viewConfig.id);
 
-    /* istanbul ignore else */
-    if (!currentViewState) {
-      const newViewState = new SkyDataViewState({ viewId: viewConfig.id });
-      const newDataState = dataState.addOrUpdateView(viewConfig.id, newViewState);
+      /* istanbul ignore else */
+      if (!currentViewState) {
+        const newViewState = new SkyDataViewState({ viewId: viewConfig.id });
+        const newDataState = dataState.addOrUpdateView(viewConfig.id, newViewState);
 
-      this.updateDataState(newDataState, this._initSource);
-    }
-  }
+        this.updateDataState(newDataState, this._initSource);
+      }
 
-  /**
-   * Returns the current SkyDataManagerState.
-   */
-  public getCurrentDataState(): SkyDataManagerState {
-    return this.dataStateChange.value && this.dataStateChange.value.dataState;
+    }).unsubscribe();
   }
 
   /**
@@ -195,10 +184,9 @@ export class SkyDataManagerService implements OnDestroy {
    * subscribes to state changes from `getDataStateUpdates`.
    */
   public updateDataState(state: SkyDataManagerState, sourceId: string): void {
-    const dataState = this.dataStateChange as BehaviorSubject<SkyDataManagerStateChange>;
-    const dataStateChange = new SkyDataManagerStateChange(state, sourceId);
+    const newStateChange = new SkyDataManagerStateChange(state, sourceId);
 
-    dataState.next(dataStateChange);
+    this.dataStateChange.next(newStateChange);
   }
 
   /**
