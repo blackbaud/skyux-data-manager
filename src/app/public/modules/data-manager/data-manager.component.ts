@@ -37,7 +37,17 @@ export class SkyDataManagerComponent implements OnDestroy, OnInit {
     this.changeDetection.markForCheck();
   }
 
+  public get viewkeeperClasses(): string[] {
+    return this._viewkeeperClasses;
+  }
+
+  public set viewkeeperClasses(value: string[]) {
+    this._viewkeeperClasses = value;
+    this.changeDetection.markForCheck();
+  }
+
   private _isInitialized = false;
+  private _viewkeeperClasses: string[] = [];
   private ngUnsubscribe = new Subject();
   private sourceId = 'dataManagerComponent';
 
@@ -51,6 +61,10 @@ export class SkyDataManagerComponent implements OnDestroy, OnInit {
       .getDataStateUpdates(this.sourceId)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => this.isInitialized = true);
+
+    this.dataManagerService.viewkeeperClasses
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(classes => this.viewkeeperClasses = classes);
   }
 
   public ngOnDestroy(): void {

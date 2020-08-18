@@ -28,6 +28,7 @@ import {
   SkyDataManagerModule,
   SkyDataManagerService
 } from '../../public_api';
+import { SkyDataManagerState } from './models/data-manager-state';
 
 describe('SkyDataManagerComponent', () => {
   let dataManagerFixture: ComponentFixture<DataManagerFixtureComponent>;
@@ -54,8 +55,8 @@ describe('SkyDataManagerComponent', () => {
     dataManagerService = TestBed.inject(SkyDataManagerService);
   });
 
-  it('should render a toolbar and view if the data manager has been initialized', () => {
-    dataManagerService.isInitialized = true;
+  it('should render a toolbar and view if the data manager state has been set', () => {
+    dataManagerService.updateDataState(new SkyDataManagerState({}), 'test');
     dataManagerFixture.detectChanges();
 
     const toolbarEl = dataManagerNativeElement.querySelector('sky-data-manager-toolbar');
@@ -64,6 +65,18 @@ describe('SkyDataManagerComponent', () => {
     expect(dataManagerFixtureComponent.dataManagerComponent.isInitialized).toBeTrue();
     expect(toolbarEl).toBeVisible();
     expect(viewEl).toBeVisible();
+  });
+
+  it('should update the viewkeeper classes when the subscription provides a new value', () => {
+    dataManagerFixture.detectChanges();
+
+    let newClass = 'newClass';
+
+    expect(dataManagerFixtureComponent.dataManagerComponent.viewkeeperClasses.includes(newClass)).toBeFalse();
+
+    dataManagerService.addViewkeeperClasses([newClass]);
+
+    expect(dataManagerFixtureComponent.dataManagerComponent.viewkeeperClasses.includes(newClass)).toBeTrue();
   });
 
   it('should pass accessibility', async(() => {

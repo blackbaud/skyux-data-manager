@@ -356,4 +356,17 @@ describe('SkyDataManagerService', () => {
       }));
     });
   });
+
+  it('should add classes to the viewkeeper class list when addViewkeeperClasses is called', () => {
+    const newClass = 'newClass';
+    let viewkeeperClasses: string[];
+
+    dataManagerService.viewkeeperClasses.subscribe(classes => viewkeeperClasses = classes);
+
+    expect(viewkeeperClasses.includes(newClass)).toBeFalse();
+
+    dataManagerService.addViewkeeperClasses([newClass]);
+
+    expect(viewkeeperClasses.includes(newClass)).toBeTrue();
+  });
 });
