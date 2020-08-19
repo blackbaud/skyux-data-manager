@@ -11,4 +11,4 @@ import {
   selector: 'sky-data-manager-toolbar-left-item',
   templateUrl: './data-manager-toolbar-left-item.component.html'
 })
-export class SkyDataManagerToolbarLeftItemsComponent { }
+export class SkyDataManagerToolbarLeftItemComponent { }

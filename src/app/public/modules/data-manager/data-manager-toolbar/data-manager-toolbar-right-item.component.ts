@@ -12,4 +12,4 @@ import {
   selector: 'sky-data-manager-toolbar-right-item',
   templateUrl: './data-manager-toolbar-right-item.component.html'
 })
-export class SkyDataManagerToolbarRightItemsComponent { }
+export class SkyDataManagerToolbarRightItemComponent { }
