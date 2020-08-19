@@ -26,9 +26,9 @@ import {
 
 import {
   SkyDataManagerModule,
-  SkyDataManagerService
+  SkyDataManagerService,
+  SkyDataManagerState
 } from '../../public_api';
-import { SkyDataManagerState } from './models/data-manager-state';
 
 describe('SkyDataManagerComponent', () => {
   let dataManagerFixture: ComponentFixture<DataManagerFixtureComponent>;
@@ -68,15 +68,22 @@ describe('SkyDataManagerComponent', () => {
   });
 
   it('should update the viewkeeper classes when the subscription provides a new value', () => {
+    const newClass = 'newClass';
+    const viewId = 'repeaterView';
+
     dataManagerFixture.detectChanges();
 
-    let newClass = 'newClass';
+    dataManagerService.updateActiveViewId(viewId);
 
-    expect(dataManagerFixtureComponent.dataManagerComponent.viewkeeperClasses.includes(newClass)).toBeFalse();
+    dataManagerFixture.detectChanges();
 
-    dataManagerService.addViewkeeperClasses([newClass]);
+    expect(dataManagerFixtureComponent.dataManagerComponent.currentViewkeeperClasses
+      .indexOf('.sky-data-manager-toolbar') !== -1).toBeTrue();
+    expect(dataManagerFixtureComponent.dataManagerComponent.currentViewkeeperClasses.includes(newClass)).toBeFalse();
 
-    expect(dataManagerFixtureComponent.dataManagerComponent.viewkeeperClasses.includes(newClass)).toBeTrue();
+    dataManagerService.setViewkeeperClasses(viewId, [newClass]);
+
+    expect(dataManagerFixtureComponent.dataManagerComponent.currentViewkeeperClasses.includes(newClass)).toBeTrue();
   });
 
   it('should pass accessibility', async(() => {

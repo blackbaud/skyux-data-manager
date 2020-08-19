@@ -28,6 +28,17 @@ import {
 })
 export class SkyDataManagerComponent implements OnDestroy, OnInit {
 
+  public get currentViewkeeperClasses(): string[] {
+    const dataManagerClasses = ['.sky-data-manager-toolbar'];
+    const allClasses = dataManagerClasses.concat(this._currentViewkeeperClasses);
+    return allClasses;
+  }
+
+  public set currentViewkeeperClasses(value: string[]) {
+    this._currentViewkeeperClasses = value;
+    this.changeDetection.markForCheck();
+  }
+
   public get isInitialized(): boolean {
     return this._isInitialized;
   }
@@ -37,17 +48,10 @@ export class SkyDataManagerComponent implements OnDestroy, OnInit {
     this.changeDetection.markForCheck();
   }
 
-  public get viewkeeperClasses(): string[] {
-    return this._viewkeeperClasses;
-  }
-
-  public set viewkeeperClasses(value: string[]) {
-    this._viewkeeperClasses = value;
-    this.changeDetection.markForCheck();
-  }
-
   private _isInitialized = false;
-  private _viewkeeperClasses: string[] = [];
+  private _currentViewkeeperClasses: string[] = [];
+  private activeViewId: string;
+  private allViewkeeperClasses: {[viewId: string]: string[]} = {};
   private ngUnsubscribe = new Subject();
   private sourceId = 'dataManagerComponent';
 
@@ -64,7 +68,18 @@ export class SkyDataManagerComponent implements OnDestroy, OnInit {
 
     this.dataManagerService.viewkeeperClasses
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(classes => this.viewkeeperClasses = classes);
+      .subscribe(classes => {
+        this.allViewkeeperClasses = classes;
+        this.currentViewkeeperClasses = classes[this.activeViewId];
+      });
+
+    this.dataManagerService
+      .getActiveViewIdUpdates()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(activeViewId => {
+        this.activeViewId = activeViewId;
+        this.currentViewkeeperClasses = this.allViewkeeperClasses[this.activeViewId];
+      });
   }
 
   public ngOnDestroy(): void {

@@ -59,7 +59,7 @@ import {
  */
 @Injectable()
 export class SkyDataManagerService implements OnDestroy {
-  public viewkeeperClasses = new BehaviorSubject<string[]>(['.sky-data-manager-toolbar']);
+  public viewkeeperClasses = new BehaviorSubject<{[viewId: string]: string[]}>({});
 
   private readonly activeViewId = new ReplaySubject<string>(1);
 
@@ -267,10 +267,10 @@ export class SkyDataManagerService implements OnDestroy {
   /**
    * @internal
    */
-  public addViewkeeperClasses(classes: string[]): void {
+  public setViewkeeperClasses(viewId: string, classes: string[]): void {
     const viewkeeperClasses = this.viewkeeperClasses.value;
-    const updatedClasses = viewkeeperClasses.concat(classes);
+    viewkeeperClasses[viewId] = classes;
 
-    this.viewkeeperClasses.next(updatedClasses);
+    this.viewkeeperClasses.next(viewkeeperClasses);
   }
 }

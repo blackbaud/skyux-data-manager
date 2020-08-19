@@ -357,16 +357,16 @@ describe('SkyDataManagerService', () => {
     });
   });
 
-  it('should add classes to the viewkeeper class list when addViewkeeperClasses is called', () => {
+  it('should set the viewkeeper classes for the given viewId when setViewkeeperClasses is called', () => {
     const newClass = 'newClass';
-    let viewkeeperClasses: string[];
+    const viewId = 'testId';
+    let viewkeeperClasses: {[viewId: string]: string[]};
 
     dataManagerService.viewkeeperClasses.subscribe(classes => viewkeeperClasses = classes);
 
-    expect(viewkeeperClasses.includes(newClass)).toBeFalse();
+    dataManagerService.setViewkeeperClasses(viewId, [newClass]);
 
-    dataManagerService.addViewkeeperClasses([newClass]);
-
-    expect(viewkeeperClasses.includes(newClass)).toBeTrue();
+    expect(viewkeeperClasses[viewId]).toBeDefined();
+    expect(viewkeeperClasses[viewId].indexOf(newClass) !== -1).toBeTrue();
   });
 });
