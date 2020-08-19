@@ -30,7 +30,12 @@ export class SkyDataManagerComponent implements OnDestroy, OnInit {
 
   public get currentViewkeeperClasses(): string[] {
     const dataManagerClasses = ['.sky-data-manager-toolbar'];
-    const allClasses = dataManagerClasses.concat(this._currentViewkeeperClasses);
+    let allClasses = dataManagerClasses;
+
+    if (this._currentViewkeeperClasses) {
+      allClasses = dataManagerClasses.concat(this._currentViewkeeperClasses);
+    }
+
     return allClasses;
   }
 
@@ -49,7 +54,7 @@ export class SkyDataManagerComponent implements OnDestroy, OnInit {
   }
 
   private _isInitialized = false;
-  private _currentViewkeeperClasses: string[] = [];
+  private _currentViewkeeperClasses: string[];
   private activeViewId: string;
   private allViewkeeperClasses: {[viewId: string]: string[]} = {};
   private ngUnsubscribe = new Subject();
