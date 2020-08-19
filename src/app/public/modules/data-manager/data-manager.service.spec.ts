@@ -367,6 +367,6 @@ describe('SkyDataManagerService', () => {
     dataManagerService.setViewkeeperClasses(viewId, [newClass]);
 
     expect(viewkeeperClasses[viewId]).toBeDefined();
-    expect(viewkeeperClasses[viewId].indexOf(newClass) !== -1).toBeTrue();
+    expect(viewkeeperClasses[viewId].indexOf(newClass) >= 0).toBeTrue();
   });
 });

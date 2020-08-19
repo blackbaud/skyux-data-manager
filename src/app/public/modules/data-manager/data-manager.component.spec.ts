@@ -78,12 +78,12 @@ describe('SkyDataManagerComponent', () => {
     dataManagerFixture.detectChanges();
 
     expect(dataManagerFixtureComponent.dataManagerComponent.currentViewkeeperClasses
-      .indexOf('.sky-data-manager-toolbar') !== -1).toBeTrue();
-    expect(dataManagerFixtureComponent.dataManagerComponent.currentViewkeeperClasses.includes(newClass)).toBeFalse();
+      .indexOf('.sky-data-manager-toolbar') >= 0).toBeTrue();
+    expect(dataManagerFixtureComponent.dataManagerComponent.currentViewkeeperClasses.indexOf(newClass) >= 0).toBeFalse();
 
     dataManagerService.setViewkeeperClasses(viewId, [newClass]);
 
-    expect(dataManagerFixtureComponent.dataManagerComponent.currentViewkeeperClasses.includes(newClass)).toBeTrue();
+    expect(dataManagerFixtureComponent.dataManagerComponent.currentViewkeeperClasses.indexOf(newClass) >= 0).toBeTrue();
   });
 
   it('should pass accessibility', async(() => {
