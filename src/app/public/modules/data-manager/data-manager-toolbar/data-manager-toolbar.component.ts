@@ -171,8 +171,6 @@ export class SkyDataManagerToolbarComponent implements OnDestroy, OnInit {
   }
 
   public onViewChange(viewId: string): void {
-    let test = document.querySelector('.sky-data-manager');
-    test.scrollIntoView();
     this.dataManagerService.updateActiveViewId(viewId);
   }
 
