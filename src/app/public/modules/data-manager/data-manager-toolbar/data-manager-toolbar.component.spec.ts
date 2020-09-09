@@ -33,12 +33,24 @@ import {
 } from './data-manager-toolbar.component';
 
 import {
+  SkyDataManagerColumnPickerContext
+} from '../data-manager-column-picker/data-manager-column-picker-context';
+
+import {
+  SkyDataManagerColumnPickerComponent
+} from '../data-manager-column-picker/data-manager-column-picker.component';
+
+import {
+  SkyDataManagerColumnPickerOption
+} from '../models/data-manager-column-picker-option';
+
+import {
   SkyDataManagerModule,
   SkyDataManagerService,
+  SkyDataManagerState,
   SkyDataViewConfig,
   SkyDataViewState
 } from '../../../public_api';
-import { SkyDataManagerState } from '../models/data-manager-state';
 
 class MockModalService {
   public closeCallback: Function;
@@ -361,21 +373,69 @@ describe('SkyDataManagerToolbarComponent', () => {
   });
 
   it('should open the column picker modal when the column picker button is clicked', () => {
+    spyOn(modalServiceInstance, 'open');
+
     const viewState = new SkyDataViewState({
       viewId: viewConfig.id
     });
-    spyOn(modalServiceInstance, 'open').and.callThrough();
+    const columnOptions: SkyDataManagerColumnPickerOption[] = [];
+
     dataManagerToolbarComponent.activeView.columnPickerEnabled = true;
 
     dataManagerToolbarFixture.detectChanges();
 
-    dataManagerToolbarComponent.activeView.columnOptions = [];
+    dataManagerToolbarComponent.activeView.columnOptions = columnOptions;
     dataManagerToolbarComponent.dataState.views = [viewState];
+
+    let context = new SkyDataManagerColumnPickerContext();
+    context.columnOptions = columnOptions;
+    context.displayedColumnIds = viewState.displayedColumnIds;
+    const options: any = {
+      providers: [{
+        provide: SkyDataManagerColumnPickerContext,
+        useValue: context
+      }]
+    };
+
     const columnPickerBtn = dataManagerToolbarNativeElement.querySelector('.sky-col-picker-btn') as HTMLButtonElement;
 
     columnPickerBtn.click();
 
-    expect(modalServiceInstance.open).toHaveBeenCalled();
+    expect(modalServiceInstance.open).toHaveBeenCalledWith(SkyDataManagerColumnPickerComponent, options);
+  });
+
+  it('should open the column picker modal with disabledColumnPickerSorting set in context when the column picker button is clicked and the view has disabled sorting', () => {
+    spyOn(modalServiceInstance, 'open').and.callThrough();
+
+    const viewState = new SkyDataViewState({
+      viewId: viewConfig.id
+    });
+    const columnOptions: SkyDataManagerColumnPickerOption[] = [];
+
+    dataManagerToolbarComponent.activeView.columnPickerEnabled = true;
+
+    dataManagerToolbarFixture.detectChanges();
+
+    dataManagerToolbarComponent.activeView.columnOptions = columnOptions;
+    dataManagerToolbarComponent.activeView.disableColumnPickerSorting = true;
+    dataManagerToolbarComponent.dataState.views = [viewState];
+
+    let context = new SkyDataManagerColumnPickerContext();
+    context.columnOptions = columnOptions;
+    context.displayedColumnIds = viewState.displayedColumnIds;
+    context.disableColumnPickerSorting = true;
+    const options: any = {
+      providers: [{
+        provide: SkyDataManagerColumnPickerContext,
+        useValue: context
+      }]
+    };
+
+    const columnPickerBtn = dataManagerToolbarNativeElement.querySelector('.sky-col-picker-btn') as HTMLButtonElement;
+
+    columnPickerBtn.click();
+
+    expect(modalServiceInstance.open).toHaveBeenCalledWith(SkyDataManagerColumnPickerComponent, options);
   });
 
   it('should save the returned column data when the column picker modal is saved', () => {

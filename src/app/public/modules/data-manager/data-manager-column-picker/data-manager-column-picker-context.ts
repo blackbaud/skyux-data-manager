@@ -5,4 +5,5 @@ import {
 export class SkyDataManagerColumnPickerContext {
   public columnOptions: SkyDataManagerColumnPickerOption[];
   public displayedColumnIds: string[];
+  public disableColumnPickerSorting?: boolean = false;
 }
