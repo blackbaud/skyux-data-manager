@@ -62,6 +62,10 @@ export interface SkyDataViewConfig {
    */
   searchEnabled?: boolean;
   /**
+   * Specifies placeholder text to display in the search input until users enter search criteria. Defaults to 'Find in this list'.
+   */
+  searchPlaceholderText?: string;
+  /**
    * Sets the `expandMode` property on the search box for this view. The valid options
    * are `responsive`, `fit`, and `none`. The default is `responsive`.
    */
