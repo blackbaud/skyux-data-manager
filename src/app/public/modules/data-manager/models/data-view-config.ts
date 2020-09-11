@@ -22,7 +22,7 @@ export interface SkyDataViewConfig {
    */
   columnPickerEnabled?: boolean;
   /**
-   * Indicates whether or not the default sorting of selected then alphabetized columns should be disabled.
+   * Indicates whether to disable the default sorting of selected followed by alphabetized columns.
    * Disabling sorting renders the column options in the order specified or order user arranged. Defaults to false.
    */
   disableColumnPickerSorting?: boolean;
