@@ -62,7 +62,8 @@ export interface SkyDataViewConfig {
    */
   searchEnabled?: boolean;
   /**
-   * Specifies placeholder text to display in the search input until users enter search criteria. Defaults to 'Find in this list'.
+   * Specifies placeholder text to display in the search input until users enter search criteria.
+   * @default 'Find in this list'
    */
   searchPlaceholderText?: string;
   /**
