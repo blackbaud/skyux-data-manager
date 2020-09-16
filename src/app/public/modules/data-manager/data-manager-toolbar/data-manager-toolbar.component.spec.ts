@@ -45,6 +45,7 @@ import {
 } from '../models/data-manager-column-picker-option';
 
 import {
+  SkyDataManagerColumnPickerSortStrategy,
   SkyDataManagerModule,
   SkyDataManagerService,
   SkyDataManagerState,
@@ -404,7 +405,7 @@ describe('SkyDataManagerToolbarComponent', () => {
     expect(modalServiceInstance.open).toHaveBeenCalledWith(SkyDataManagerColumnPickerComponent, options);
   });
 
-  it('should open the column picker modal with disabledColumnPickerSorting set in context when the column picker button is clicked and the view has disabled sorting', () => {
+  it('should open the column picker modal with columnPickerSortStrategy set in context when the column picker button is clicked and the view has None specified', () => {
     spyOn(modalServiceInstance, 'open').and.callThrough();
 
     const viewState = new SkyDataViewState({
@@ -413,17 +414,17 @@ describe('SkyDataManagerToolbarComponent', () => {
     const columnOptions: SkyDataManagerColumnPickerOption[] = [];
 
     dataManagerToolbarComponent.activeView.columnPickerEnabled = true;
+    dataManagerToolbarComponent.activeView.columnOptions = columnOptions;
+    dataManagerToolbarComponent.activeView.columnPickerSortStrategy = SkyDataManagerColumnPickerSortStrategy.None;
 
     dataManagerToolbarFixture.detectChanges();
 
-    dataManagerToolbarComponent.activeView.columnOptions = columnOptions;
-    dataManagerToolbarComponent.activeView.disableColumnPickerSorting = true;
     dataManagerToolbarComponent.dataState.views = [viewState];
 
     let context = new SkyDataManagerColumnPickerContext();
     context.columnOptions = columnOptions;
     context.displayedColumnIds = viewState.displayedColumnIds;
-    context.disableColumnPickerSorting = true;
+    context.columnPickerSortStrategy = SkyDataManagerColumnPickerSortStrategy.None;
     const options: any = {
       providers: [{
         provide: SkyDataManagerColumnPickerContext,

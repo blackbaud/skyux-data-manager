@@ -36,6 +36,7 @@ import {
 import {
   SkyDataViewConfig
 } from '../models/data-view-config';
+import { SkyDataManagerColumnPickerSortStrategy } from '../models/data-manager-column-picker-sort-strategy';
 
 /**
  * @internal
@@ -173,7 +174,7 @@ export class SkyDataManagerColumnPickerComponent implements OnDestroy, OnInit {
 
       // if column picker sorting is currently enabled sort columns by order displayed then alphabetical
       // else display column in order they were specified in the columnOptions
-      if (!this.context.disableColumnPickerSorting) {
+      if (this.context.columnPickerSortStrategy === SkyDataManagerColumnPickerSortStrategy.SelectedThenAlphabetical) {
         if (formattedColumn.isSelected) {
           formattedColumnOptions[colIndex] = formattedColumn;
         } else {
@@ -186,7 +187,7 @@ export class SkyDataManagerColumnPickerComponent implements OnDestroy, OnInit {
 
     // if column picker sorting is enabled, sort the columns that are not currently displayed
     // and add them after the currently displayed options
-    if (!this.context.disableColumnPickerSorting) {
+    if (this.context.columnPickerSortStrategy === SkyDataManagerColumnPickerSortStrategy.SelectedThenAlphabetical) {
       unselectedColumnOptions.sort((col1, col2) => col1.label.localeCompare(col2.label));
       formattedColumnOptions = formattedColumnOptions.concat(unselectedColumnOptions);
     }

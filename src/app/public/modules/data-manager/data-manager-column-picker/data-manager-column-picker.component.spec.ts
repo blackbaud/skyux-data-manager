@@ -27,6 +27,7 @@ import {
 } from './data-manager-column-picker-context';
 
 import {
+  SkyDataManagerColumnPickerSortStrategy,
   SkyDataManagerModule
 } from '../../../public_api';
 
@@ -103,6 +104,7 @@ describe('SkyDataManagerColumnPickerComponent', () => {
 
   const modalContext: SkyDataManagerColumnPickerContext = {
     columnOptions: columns,
+    columnPickerSortStrategy: SkyDataManagerColumnPickerSortStrategy.SelectedThenAlphabetical,
     displayedColumnIds: ['1', '3']
   };
 
@@ -214,14 +216,14 @@ describe('SkyDataManagerColumnPickerComponent', () => {
     });
   });
 
-  it ('should sort columns if column picker sorting is not disabled', () => {
+  it ('should sort columns if column picker sorting is set to selected then alphabetical', () => {
     expect(dataManagerColumnPickerComponent.columnData).toEqual([column1, column3, column2, column4]);
   });
 
-  it ('should not sort columns if column picker sorting is disabled', () => {
+  it ('should not sort columns if column picker sorting is set to none', () => {
     dataManagerColumnPickerFixture = TestBed.createComponent(SkyDataManagerColumnPickerComponent);
     dataManagerColumnPickerComponent = dataManagerColumnPickerFixture.componentInstance;
-    dataManagerColumnPickerComponent.context.disableColumnPickerSorting = true;
+    dataManagerColumnPickerComponent.context.columnPickerSortStrategy = SkyDataManagerColumnPickerSortStrategy.None;
     dataManagerColumnPickerFixture.detectChanges();
 
     expect(dataManagerColumnPickerComponent.columnData).toEqual([column1, column2, column3, column4]);

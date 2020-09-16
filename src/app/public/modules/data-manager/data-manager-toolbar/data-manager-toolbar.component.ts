@@ -206,8 +206,8 @@ export class SkyDataManagerToolbarComponent implements OnDestroy, OnInit {
     const viewState = this.dataState.getViewStateById(this.activeView.id);
     context.columnOptions = this.activeView && this.activeView.columnOptions;
     context.displayedColumnIds = viewState.displayedColumnIds;
-    if (this.activeView.disableColumnPickerSorting) {
-      context.disableColumnPickerSorting = true;
+    if (this.activeView.columnPickerSortStrategy) {
+      context.columnPickerSortStrategy = this.activeView.columnPickerSortStrategy;
     }
 
     const options: any = {
