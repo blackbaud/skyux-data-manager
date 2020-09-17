@@ -8,7 +8,7 @@ import {
 
 export class SkyDataManagerColumnPickerContext {
   public columnOptions: SkyDataManagerColumnPickerOption[];
-  public columnPickerSortStrategy?: SkyDataManagerColumnPickerSortStrategy =
+  public columnPickerSortStrategy: SkyDataManagerColumnPickerSortStrategy =
     SkyDataManagerColumnPickerSortStrategy.SelectedThenAlphabetical;
   public displayedColumnIds: string[];
 }

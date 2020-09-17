@@ -30,13 +30,16 @@ import {
 } from '../models/data-manager-column-picker-option';
 
 import {
+  SkyDataManagerColumnPickerSortStrategy
+} from '../models/data-manager-column-picker-sort-strategy';
+
+import {
   SkyDataManagerState
 } from '../models/data-manager-state';
 
 import {
   SkyDataViewConfig
 } from '../models/data-view-config';
-import { SkyDataManagerColumnPickerSortStrategy } from '../models/data-manager-column-picker-sort-strategy';
 
 /**
  * @internal

@@ -1,4 +1,4 @@
-export enum SkyDataManagerColumnPickerSortStrategy {
-  None = 'None',
-  SelectedThenAlphabetical = 'SelectedThenAlphabetical'
+export const enum SkyDataManagerColumnPickerSortStrategy {
+  None = 'none',
+  SelectedThenAlphabetical = 'selectedThenAlphabetical'
 }
