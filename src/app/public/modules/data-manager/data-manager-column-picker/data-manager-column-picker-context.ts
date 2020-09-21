@@ -7,8 +7,11 @@ import {
 } from '../models/data-manager-column-picker-sort-strategy';
 
 export class SkyDataManagerColumnPickerContext {
-  public columnOptions: SkyDataManagerColumnPickerOption[];
-  public columnPickerSortStrategy: SkyDataManagerColumnPickerSortStrategy =
-    SkyDataManagerColumnPickerSortStrategy.SelectedThenAlphabetical;
-  public displayedColumnIds: string[];
+
+  constructor(
+    public columnOptions: SkyDataManagerColumnPickerOption[],
+    public displayedColumnIds: string[],
+    public columnPickerSortStrategy: SkyDataManagerColumnPickerSortStrategy =
+      SkyDataManagerColumnPickerSortStrategy.SelectedThenAlphabetical
+  ) { }
 }

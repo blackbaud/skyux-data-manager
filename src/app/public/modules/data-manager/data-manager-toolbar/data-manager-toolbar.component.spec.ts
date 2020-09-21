@@ -388,9 +388,7 @@ describe('SkyDataManagerToolbarComponent', () => {
     dataManagerToolbarComponent.activeView.columnOptions = columnOptions;
     dataManagerToolbarComponent.dataState.views = [viewState];
 
-    const context = new SkyDataManagerColumnPickerContext();
-    context.columnOptions = columnOptions;
-    context.displayedColumnIds = viewState.displayedColumnIds;
+    const context = new SkyDataManagerColumnPickerContext(columnOptions, viewState.displayedColumnIds);
     const options: any = {
       providers: [{
         provide: SkyDataManagerColumnPickerContext,
@@ -421,10 +419,11 @@ describe('SkyDataManagerToolbarComponent', () => {
 
     dataManagerToolbarComponent.dataState.views = [viewState];
 
-    const context = new SkyDataManagerColumnPickerContext();
-    context.columnOptions = columnOptions;
-    context.displayedColumnIds = viewState.displayedColumnIds;
-    context.columnPickerSortStrategy = SkyDataManagerColumnPickerSortStrategy.None;
+    const context = new SkyDataManagerColumnPickerContext(
+      columnOptions,
+      viewState.displayedColumnIds,
+      SkyDataManagerColumnPickerSortStrategy.None
+    );
     const options: any = {
       providers: [{
         provide: SkyDataManagerColumnPickerContext,
