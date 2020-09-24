@@ -2,10 +2,8 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef,
   OnDestroy,
-  OnInit,
-  ViewChild
+  OnInit
 } from '@angular/core';
 
 import {
@@ -19,6 +17,10 @@ import {
 import {
   SkyDataManagerService
 } from './data-manager.service';
+import {
+  SkyBackToTopMessage,
+  SkyBackToTopMessageType
+ } from '@skyux/layout';
 
 /**
  * The top-level data manager component. Provide `SkyDataManagerService` at this level.
@@ -29,9 +31,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyDataManagerComponent implements OnDestroy, OnInit {
-
-  @ViewChild('dataManager', {read: ElementRef})
-  public dataManagerDiv: ElementRef;
 
   public get currentViewkeeperClasses(): string[] {
     const dataManagerClasses = ['.sky-data-manager-toolbar'];
@@ -57,6 +56,12 @@ export class SkyDataManagerComponent implements OnDestroy, OnInit {
     this._isInitialized = value;
     this.changeDetection.markForCheck();
   }
+
+  public backToTopController = new Subject<SkyBackToTopMessage>();
+
+  public backToTopOptions = {
+    buttonHidden: true
+  };
 
   private _isInitialized = false;
   private _currentViewkeeperClasses: string[];
@@ -88,20 +93,7 @@ export class SkyDataManagerComponent implements OnDestroy, OnInit {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(activeViewId => {
         this.activeViewId = activeViewId;
-        console.log('hello');
-        if (this.dataManagerDiv && this.dataManagerDiv.nativeElement) {
-          // console.log(this.dataManagerDiv.nativeElement.scrollTop);
-          // console.log(this.dataManagerDiv.nativeElement.offsetTop);
-          // window.scrollTo(0, 0);
-          // let test = this.findScrollableParent(this.dataManagerDiv.nativeElement);
-          // console.log('THE PARENT');
-          // console.log(test);
-          // test.scrollTo(0, this.dataManagerDiv.nativeElement.offsetTop);
-
-          setTimeout(() => {
-            this.dataManagerDiv.nativeElement.scrollTo(0, 50);
-          }, 1000);
-        }
+        this.backToTopController.next({ type: SkyBackToTopMessageType.BackToTop });
         this.currentViewkeeperClasses = this.allViewkeeperClasses[this.activeViewId];
       });
   }
@@ -110,12 +102,4 @@ export class SkyDataManagerComponent implements OnDestroy, OnInit {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
-
-  // private findScrollableParent(element: HTMLElement): HTMLElement {
-  //   if (getComputedStyle(element).overflowY === 'auto') {
-  //       return element;
-  //   } else {
-  //       return this.findScrollableParent(element.parentElement);
-  //   }
-  // }
 }
