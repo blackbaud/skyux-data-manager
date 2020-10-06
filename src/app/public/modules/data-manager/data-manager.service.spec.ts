@@ -278,12 +278,7 @@ describe('SkyDataManagerService', () => {
       });
       describe('with comparator', () => {
         const firstDataState = new SkyDataManagerState({ searchText: 'SEARCHTEXT' });
-        console.log('first data state');
-        console.log(firstDataState);
         const comparator = (state1: SkyDataManagerState, state2: SkyDataManagerState): boolean => {
-          console.log('hellllo');
-          console.log(state1);
-          console.log(state2);
           return state1.searchText.toLowerCase() === state2.searchText.toLowerCase();
         };
 
@@ -294,8 +289,6 @@ describe('SkyDataManagerService', () => {
 
           dataStateObservable.subscribe(state => {
             dataState = state;
-            console.log('state change!');
-            console.log(state);
           });
         });
 

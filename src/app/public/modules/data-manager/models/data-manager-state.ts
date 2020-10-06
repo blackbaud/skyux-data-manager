@@ -19,12 +19,12 @@ import {
 } from './data-view-state-options';
 
 export class SkyDataManagerState {
-  public activeSortOption?: SkyDataManagerSortOption;
-  public additionalData?: any;
-  public filterData?: SkyDataManagerFilterData;
-  public onlyShowSelected?: boolean;
-  public searchText?: string;
-  public selectedIds?: string[];
+  public activeSortOption: SkyDataManagerSortOption;
+  public additionalData: any;
+  public filterData: SkyDataManagerFilterData;
+  public onlyShowSelected: boolean;
+  public searchText: string;
+  public selectedIds: string[];
   public views: SkyDataViewState[] = [];
 
   constructor(data: SkyDataManagerStateOptions) {

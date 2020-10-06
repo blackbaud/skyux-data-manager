@@ -187,15 +187,15 @@ export class SkyDataManagerService implements OnDestroy {
   public getDataStateUpdates(
     sourceId: string,
     updateFilter?: SkyDataManagerStateUpdateFilterArgs
-    ): Observable<SkyDataManagerState> {
+  ): Observable<SkyDataManagerState> {
     // filter out events from the provided source and emit just the dataState
     if (updateFilter) {
       return this.dataStateChange.pipe(
         filter(stateChange => sourceId !== stateChange.source),
         map(stateChange => stateChange.dataState),
         updateFilter.comparator ?
-        distinctUntilChanged(updateFilter.comparator) :
-        distinctUntilChanged(this.getDefaultStateComparator(updateFilter.properties))
+          distinctUntilChanged(updateFilter.comparator) :
+          distinctUntilChanged(this.getDefaultStateComparator(updateFilter.properties))
       );
     } else {
       return this.dataStateChange.pipe(
@@ -303,7 +303,7 @@ export class SkyDataManagerService implements OnDestroy {
     this.viewkeeperClasses.next(viewkeeperClasses);
   }
 
-  private filterDataStateProperties(state: SkyDataManagerState, properties: string[]): SkyDataManagerState {
+  private filterDataStateProperties(state: SkyDataManagerState, properties: string[]): SkyDataManagerStateOptions {
     const stateProperties = state.getStateOptions() as { [key: string]: any; };
     let filteredStateProperties: any = {};
     for (let property of properties) {
@@ -320,7 +320,7 @@ export class SkyDataManagerService implements OnDestroy {
     return (state1: SkyDataManagerState, state2: SkyDataManagerState): boolean => {
       const filteredState1 = this.filterDataStateProperties(state1, properties);
       const filteredState2 = this.filterDataStateProperties(state2, properties);
-      return JSON.stringify(filteredState1.getStateOptions()) === JSON.stringify(filteredState2.getStateOptions());
+      return JSON.stringify(filteredState1) === JSON.stringify(filteredState2);
     };
   }
 }
