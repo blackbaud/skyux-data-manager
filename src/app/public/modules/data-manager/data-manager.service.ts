@@ -313,7 +313,7 @@ export class SkyDataManagerService implements OnDestroy {
       }
     }
 
-    return new SkyDataManagerState(filteredStateProperties);
+    return filteredStateProperties;
   }
 
   private getDefaultStateComparator(properties: string[]): (state1: SkyDataManagerState, state2: SkyDataManagerState) => boolean {
