@@ -1,5 +1,5 @@
 # 4.0.0 (2020-10-09)
-- Added the option to set column picker sorting to `None` to allow column options to render in the order provided. [#12](https://github.com/blackbaud/skyux-data-manager/pull/12)
+- Added an option to disable column picker sorting to render column options in the order provided. [#12](https://github.com/blackbaud/skyux-data-manager/pull/12)
 - Updated the data manager component to scroll to the top of the data view when the active view is changed. [#15](https://github.com/blackbaud/skyux-data-manager/pull/15)
 - Updated the data manager service to log a warning if `initDataManager` or `initDataView` is called for a data manager or view that has already been initialized. [#14](https://github.com/blackbaud/skyux-data-manager/pull/14)
 - Added an option to `getDataStateUpdates` to only receive updates if one of a provided list of properties changes, or if a provided comparator indicates changes. [#16](https://github.com/blackbaud/skyux-data-manager/pull/16)
