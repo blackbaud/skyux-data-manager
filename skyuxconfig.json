@@ -42,10 +42,16 @@
       }
     }
   },
+  "omnibar": {},
+  "params": {
+    "svcid": {
+      "value": "skyux"
+    }
+  },
   "host": {
+    "url": "https://developer.blackbaud.com",
     "frameOptions": {
       "none": true
-    },
-    "url": "https://developer.blackbaud.com"
+    }
   }
 }
