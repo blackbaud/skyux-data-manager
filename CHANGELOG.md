@@ -1,5 +1,5 @@
-# 4.0.1 (20201-01-15)
-- Changed the `SkyDataManagerColumnPickerSortStrategy` export to be referencable. [#22](https://github.com/blackbaud/skyux-data-manager/pull/22)
+# 4.0.1 (2021-01-15)
+- Updated the `SkyDataManagerColumnPickerSortStrategy` export to be referenceable. [#22](https://github.com/blackbaud/skyux-data-manager/pull/22)
 
 # 4.0.0 (2020-10-09)
 - Added an option to disable column picker sorting to render column options in the order provided. [#12](https://github.com/blackbaud/skyux-data-manager/pull/12)
