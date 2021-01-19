@@ -1,4 +1,4 @@
-# 4.0.1 (2021-01-15)
+# 4.0.1 (2021-01-19)
 - Updated the `SkyDataManagerColumnPickerSortStrategy` export to be referenceable. [#22](https://github.com/blackbaud/skyux-data-manager/pull/22)
 
 # 4.0.0 (2020-10-09)
