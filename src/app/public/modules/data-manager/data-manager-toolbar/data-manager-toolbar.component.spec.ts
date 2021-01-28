@@ -122,7 +122,7 @@ describe('SkyDataManagerToolbarComponent', () => {
     // `which` but our current search component implementation uses it.
     SkyAppTestUtility.fireDomEvent(inputEl.nativeElement, 'keyup', {
       keyboardEventInit: <any> {
-        which:13
+        which: 13
       }
     });
     dataManagerToolbarFixture.detectChanges();
