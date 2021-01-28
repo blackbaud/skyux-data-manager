@@ -5,8 +5,14 @@ import {
 import {
   async,
   ComponentFixture,
-  TestBed
+  fakeAsync,
+  TestBed,
+  tick
 } from '@angular/core/testing';
+
+import {
+  By
+} from '@angular/platform-browser';
 
 import {
   SkyCheckboxChange
@@ -90,6 +96,38 @@ describe('SkyDataManagerToolbarComponent', () => {
   let dataManagerService: SkyDataManagerService;
   let modalServiceInstance: MockModalService;
   let viewConfig: SkyDataViewConfig;
+
+  function setSearchInput(text: string) {
+    let inputEvent = document.createEvent('Event');
+    let params = {
+      bubbles: false,
+      cancelable: false
+    };
+    inputEvent.initEvent('input', params.bubbles, params.cancelable);
+
+    let changeEvent = document.createEvent('Event');
+    changeEvent.initEvent('change', params.bubbles, params.cancelable);
+    let inputEl = dataManagerToolbarFixture.debugElement.query(By.css('input'));
+    inputEl.nativeElement.value = text;
+
+    inputEl.nativeElement.dispatchEvent(inputEvent);
+    dataManagerToolbarFixture.detectChanges();
+
+    inputEl.nativeElement.dispatchEvent(changeEvent);
+    dataManagerToolbarFixture.detectChanges();
+  }
+
+  function triggerSearchInputEnter() {
+    let inputEl = dataManagerToolbarFixture.debugElement.query(By.css('.sky-search-container input'));
+    inputEl.triggerEventHandler('keyup', { which: 13});
+    dataManagerToolbarFixture.detectChanges();
+  }
+
+  function triggerSearchApplyButton() {
+    let applyEl = dataManagerToolbarFixture.debugElement.query(By.css('.sky-search-btn-apply'));
+    applyEl.triggerEventHandler('click', undefined);
+    dataManagerToolbarFixture.detectChanges();
+  }
 
   beforeEach(() => {
     modalServiceInstance = new MockModalService();
@@ -325,6 +363,65 @@ describe('SkyDataManagerToolbarComponent', () => {
 
     expect(dataManagerService.updateDataState).toHaveBeenCalledWith(dataState, 'toolbar');
   });
+
+  it('should not update the data state when search text is typed but not applied', fakeAsync(() => {
+    dataManagerToolbarComponent.activeView.searchEnabled = true;
+    spyOn(dataManagerService, 'updateDataState');
+
+    dataManagerToolbarFixture.detectChanges();
+
+    let dataState = dataManagerToolbarComponent.dataState;
+    expect(dataState.searchText).toBeUndefined();
+
+    setSearchInput('testing');
+
+    dataManagerToolbarFixture.detectChanges();
+    tick();
+    dataManagerToolbarFixture.detectChanges();
+
+    expect(dataState.searchText).toBeUndefined();
+    expect(dataManagerService.updateDataState).not.toHaveBeenCalled();
+  }));
+
+  it('should update the data state when search text is typed and applied via enter', fakeAsync(() => {
+    dataManagerToolbarComponent.activeView.searchEnabled = true;
+    spyOn(dataManagerService, 'updateDataState');
+
+    dataManagerToolbarFixture.detectChanges();
+
+    let dataState = dataManagerToolbarComponent.dataState;
+    expect(dataState.searchText).toBeUndefined();
+
+    setSearchInput('testing');
+    triggerSearchInputEnter();
+
+    dataManagerToolbarFixture.detectChanges();
+    tick();
+    dataManagerToolbarFixture.detectChanges();
+
+    expect(dataState.searchText).toBe('testing');
+    expect(dataManagerService.updateDataState).toHaveBeenCalledWith(dataState, 'toolbar');
+  }));
+
+  it('should update the data state when search text is typed and applied via the search button', fakeAsync(() => {
+    dataManagerToolbarComponent.activeView.searchEnabled = true;
+    spyOn(dataManagerService, 'updateDataState');
+
+    dataManagerToolbarFixture.detectChanges();
+
+    let dataState = dataManagerToolbarComponent.dataState;
+    expect(dataState.searchText).toBeUndefined();
+
+    setSearchInput('testing');
+    triggerSearchApplyButton();
+
+    dataManagerToolbarFixture.detectChanges();
+    tick();
+    dataManagerToolbarFixture.detectChanges();
+
+    expect(dataState.searchText).toBe('testing');
+    expect(dataManagerService.updateDataState).toHaveBeenCalledWith(dataState, 'toolbar');
+  }));
 
   it('should update the active view id via the data manager service when the view changes', () => {
     const newViewId = 'testId';
