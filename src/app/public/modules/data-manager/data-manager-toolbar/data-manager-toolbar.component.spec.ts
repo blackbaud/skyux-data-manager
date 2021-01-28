@@ -23,7 +23,8 @@ import {
 } from '@skyux/modals';
 
 import {
-  expect
+  expect,
+  SkyAppTestUtility
 } from '@skyux-sdk/testing';
 
 import {
@@ -97,35 +98,39 @@ describe('SkyDataManagerToolbarComponent', () => {
   let modalServiceInstance: MockModalService;
   let viewConfig: SkyDataViewConfig;
 
-  function setSearchInput(text: string) {
-    let inputEvent = document.createEvent('Event');
-    let params = {
-      bubbles: false,
-      cancelable: false
-    };
-    inputEvent.initEvent('input', params.bubbles, params.cancelable);
-
-    let changeEvent = document.createEvent('Event');
-    changeEvent.initEvent('change', params.bubbles, params.cancelable);
+  function setSearchInput(text: string): void {
     let inputEl = dataManagerToolbarFixture.debugElement.query(By.css('input'));
     inputEl.nativeElement.value = text;
 
-    inputEl.nativeElement.dispatchEvent(inputEvent);
+    SkyAppTestUtility.fireDomEvent(inputEl.nativeElement, 'input', {
+      bubbles: false,
+      cancelable: false
+    });
     dataManagerToolbarFixture.detectChanges();
 
-    inputEl.nativeElement.dispatchEvent(changeEvent);
+    SkyAppTestUtility.fireDomEvent(inputEl.nativeElement, 'change', {
+      bubbles: false,
+      cancelable: false
+    });
     dataManagerToolbarFixture.detectChanges();
   }
 
-  function triggerSearchInputEnter() {
+  function triggerSearchInputEnter(): void {
     let inputEl = dataManagerToolbarFixture.debugElement.query(By.css('.sky-search-container input'));
-    inputEl.triggerEventHandler('keyup', { which: 13});
+
+    // The `any` cast here is because the typescript types for KeyboardEventInit do not include
+    // `which` but our current search component implementation uses it.
+    SkyAppTestUtility.fireDomEvent(inputEl.nativeElement, 'keyup', {
+      keyboardEventInit: <any> {
+        which:13
+      }
+    });
     dataManagerToolbarFixture.detectChanges();
   }
 
-  function triggerSearchApplyButton() {
+  function triggerSearchApplyButton(): void {
     let applyEl = dataManagerToolbarFixture.debugElement.query(By.css('.sky-search-btn-apply'));
-    applyEl.triggerEventHandler('click', undefined);
+    SkyAppTestUtility.fireDomEvent(applyEl.nativeElement, 'click');
     dataManagerToolbarFixture.detectChanges();
   }
 
