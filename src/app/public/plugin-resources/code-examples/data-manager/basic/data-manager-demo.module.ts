@@ -4,7 +4,7 @@ import {
 
 import {
   CommonModule
-} from "@angular/common";
+} from '@angular/common';
 
 import {
   NgModule
