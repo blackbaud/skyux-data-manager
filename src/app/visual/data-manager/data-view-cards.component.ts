@@ -81,7 +81,7 @@ export class DataViewCardsComponent implements OnInit {
 
   public searchItems(items: any[]): any[] {
     let searchedItems = items;
-    let searchText = this.dataState && this.dataState.searchText.toUpperCase();
+    let searchText = this.dataState && this.dataState.searchText?.toUpperCase();
 
     if (searchText) {
       searchedItems = items.filter(function (item: any) {

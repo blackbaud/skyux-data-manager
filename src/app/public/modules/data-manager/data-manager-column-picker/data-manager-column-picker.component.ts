@@ -117,7 +117,7 @@ export class SkyDataManagerColumnPickerComponent implements OnDestroy, OnInit {
 
   public searchColumns(columns: Column[]): Column[] {
     let searchedColumns = columns;
-    let searchText = this.dataState && this.dataState.searchText.toUpperCase();
+    let searchText = this.dataState && this.dataState.searchText?.toUpperCase();
 
     if (searchText) {
       searchedColumns = columns.filter(function (item: any) {
