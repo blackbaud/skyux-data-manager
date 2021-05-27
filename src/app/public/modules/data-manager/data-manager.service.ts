@@ -166,10 +166,45 @@ export class SkyDataManagerService implements OnDestroy {
       const dataState = change.dataState;
       const currentViewState = dataState.getViewStateById(viewConfig.id);
 
-      /* istanbul ignore else */
       if (!currentViewState) {
-        const newViewState = new SkyDataViewState({ viewId: viewConfig.id });
+        let newViewState = new SkyDataViewState({ viewId: viewConfig.id });
+
+        // Ensure that the view state's available columns match with the view config. Also,
+        // add columns to the `displayedColumnIds` as long as they are not `initialHide`
+        if (viewConfig.columnOptions) {
+          const availableColumnIds = viewConfig.columnOptions.map(colomnOption => { return colomnOption.id; });
+          const displayedColumnIds = viewConfig.columnOptions
+            .filter(columnOption => { return !columnOption.initialHide; })
+            .map(columnOption => { return columnOption.id; });
+
+          newViewState.availableColumnIds = availableColumnIds;
+          newViewState.displayedColumnIds = displayedColumnIds;
+        }
         const newDataState = dataState.addOrUpdateView(viewConfig.id, newViewState);
+
+        this.updateDataState(newDataState, this.initSource);
+      } else {
+        const currentAvailableColumnIds = viewConfig.columnOptions?.map(colomnOption => { return colomnOption.id; });
+
+        // Ensure that the view state's available columns match with the view config. Also,
+        // add new columns to the `displayedColumnIds` as long as they are not `initialHide`.
+        // We only add columns to `displayedColumnsIds` if we had previously tracked
+        // `availableColumnIds` to avoid breaking changes.
+        if (currentViewState.availableColumnIds.length > 0) {
+          let newColumnIds = currentAvailableColumnIds.filter(id => currentViewState.availableColumnIds.indexOf(id) < 0);
+          newColumnIds = newColumnIds.filter(columnId => {
+            return viewConfig.columnOptions.find(columnOption => columnOption.id === columnId && !columnOption.initialHide);
+          });
+
+          // Add the column IDs that now exist to the data manager state both as available
+          // and as shown.
+          currentViewState.displayedColumnIds = currentViewState.displayedColumnIds.concat(newColumnIds);
+        }
+        // Add the column IDs that now exist to the data manager state both as available
+        // and as shown.
+        currentViewState.availableColumnIds = currentAvailableColumnIds;
+
+        const newDataState = dataState.addOrUpdateView(viewConfig.id, currentViewState);
 
         this.updateDataState(newDataState, this.initSource);
       }
@@ -288,8 +323,8 @@ export class SkyDataManagerService implements OnDestroy {
       console.error('A view with the id {id} does not exist.', view.id);
     } else {
 
-    currentViews[existingViewIndex] = view;
-    this.views.next(currentViews);
+      currentViews[existingViewIndex] = view;
+      this.views.next(currentViews);
     }
   }
 

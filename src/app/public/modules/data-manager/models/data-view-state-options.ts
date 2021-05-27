@@ -4,6 +4,10 @@ export interface SkyDataViewStateOptions {
    */
   viewId: string;
   /**
+   * The IDs of the olumns able to be displayed for column-based views.
+   */
+  availableColumnIds?: string[];
+  /**
    * The IDs of the columns displayed for column-based views.
    */
   displayedColumnIds?: string[];
