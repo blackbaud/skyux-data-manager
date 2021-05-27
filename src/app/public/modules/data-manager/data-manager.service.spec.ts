@@ -443,7 +443,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toBeUndefined();
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: [],
+          columnIds: [],
           displayedColumnIds: [],
           additionalData: undefined
         }));
@@ -454,7 +454,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toEqual(newView);
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: [],
+          columnIds: [],
           displayedColumnIds: [],
           additionalData: undefined
         }));
@@ -469,7 +469,7 @@ describe('SkyDataManagerService', () => {
         views: [
           {
             viewId: 'newView',
-            availableColumnIds: ['1', '2'],
+            columnIds: ['1', '2'],
             displayedColumnIds: ['2']
           }
         ]
@@ -497,7 +497,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toBeUndefined();
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: ['1', '2'],
+          columnIds: ['1', '2'],
           displayedColumnIds: ['2'],
           additionalData: undefined
         }));
@@ -508,7 +508,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toEqual(newView);
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: ['1', '2'],
+          columnIds: ['1', '2'],
           displayedColumnIds: ['2'],
           additionalData: undefined
         }));
@@ -523,7 +523,7 @@ describe('SkyDataManagerService', () => {
         views: [
           {
             viewId: 'newView',
-            availableColumnIds: ['1', '2'],
+            columnIds: ['1', '2'],
             displayedColumnIds: ['2']
           }
         ]
@@ -555,7 +555,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toBeUndefined();
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: ['1', '2'],
+          columnIds: ['1', '2'],
           displayedColumnIds: ['2'],
           additionalData: undefined
         }));
@@ -566,7 +566,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toEqual(newView);
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: ['1', '2', '3'],
+          columnIds: ['1', '2', '3'],
           displayedColumnIds: ['2', '3'],
           additionalData: undefined
         }));
@@ -582,7 +582,7 @@ describe('SkyDataManagerService', () => {
         views: [
           {
             viewId: 'newView',
-            availableColumnIds: ['1', '2'],
+            columnIds: ['1', '2'],
             displayedColumnIds: ['2']
           }
         ]
@@ -615,7 +615,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toBeUndefined();
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: ['1', '2'],
+          columnIds: ['1', '2'],
           displayedColumnIds: ['2'],
           additionalData: undefined
         }));
@@ -626,7 +626,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toEqual(newView);
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: ['1', '2', '3'],
+          columnIds: ['1', '2', '3'],
           displayedColumnIds: ['2'],
           additionalData: undefined
         }));
@@ -642,7 +642,7 @@ describe('SkyDataManagerService', () => {
         views: [
           {
             viewId: 'newView',
-            availableColumnIds: [],
+            columnIds: [],
             displayedColumnIds: ['2']
           }
         ]
@@ -675,7 +675,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toBeUndefined();
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: [],
+          columnIds: [],
           displayedColumnIds: ['2'],
           additionalData: undefined
         }));
@@ -686,7 +686,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toEqual(newView);
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: ['1', '2', '3'],
+          columnIds: ['1', '2', '3'],
           displayedColumnIds: ['2'],
           additionalData: undefined
         }));
@@ -732,7 +732,7 @@ describe('SkyDataManagerService', () => {
         expect(dataManagerService.getViewById(newView.id)).toEqual(newView);
         expect(viewState).toEqual(new SkyDataViewState({
           viewId: 'newView',
-          availableColumnIds: ['1', '2', '3'],
+          columnIds: ['1', '2', '3'],
           displayedColumnIds: ['1', '2'],
           additionalData: undefined
         }));

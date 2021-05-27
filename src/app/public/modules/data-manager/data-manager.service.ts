@@ -172,26 +172,26 @@ export class SkyDataManagerService implements OnDestroy {
         // Ensure that the view state's available columns match with the view config. Also,
         // add columns to the `displayedColumnIds` as long as they are not `initialHide`
         if (viewConfig.columnOptions) {
-          const availableColumnIds = viewConfig.columnOptions.map(colomnOption => { return colomnOption.id; });
+          const columnIds = viewConfig.columnOptions.map(columnOptions => { return columnOptions.id; });
           const displayedColumnIds = viewConfig.columnOptions
             .filter(columnOption => { return !columnOption.initialHide; })
             .map(columnOption => { return columnOption.id; });
 
-          newViewState.availableColumnIds = availableColumnIds;
+          newViewState.columnIds = columnIds;
           newViewState.displayedColumnIds = displayedColumnIds;
         }
         const newDataState = dataState.addOrUpdateView(viewConfig.id, newViewState);
 
         this.updateDataState(newDataState, this.initSource);
       } else {
-        const currentAvailableColumnIds = viewConfig.columnOptions?.map(colomnOption => { return colomnOption.id; });
+        const currentAvailableColumnIds = viewConfig.columnOptions?.map(columnOptions => { return columnOptions.id; });
 
         // Ensure that the view state's available columns match with the view config. Also,
         // add new columns to the `displayedColumnIds` as long as they are not `initialHide`.
         // We only add columns to `displayedColumnsIds` if we had previously tracked
-        // `availableColumnIds` to avoid breaking changes.
-        if (currentViewState.availableColumnIds.length > 0) {
-          let newColumnIds = currentAvailableColumnIds.filter(id => currentViewState.availableColumnIds.indexOf(id) < 0);
+        // `columnIds` to avoid breaking changes.
+        if (currentViewState.columnIds.length > 0) {
+          let newColumnIds = currentAvailableColumnIds.filter(id => currentViewState.columnIds.indexOf(id) < 0);
           newColumnIds = newColumnIds.filter(columnId => {
             return viewConfig.columnOptions.find(columnOption => columnOption.id === columnId && !columnOption.initialHide);
           });
@@ -202,7 +202,7 @@ export class SkyDataManagerService implements OnDestroy {
         }
         // Add the column IDs that now exist to the data manager state both as available
         // and as shown.
-        currentViewState.availableColumnIds = currentAvailableColumnIds;
+        currentViewState.columnIds = currentAvailableColumnIds;
 
         const newDataState = dataState.addOrUpdateView(viewConfig.id, currentViewState);
 
