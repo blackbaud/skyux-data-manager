@@ -1,3 +1,11 @@
+# 5.0.0-beta.1 (2021-06-24)
+
+- Added support for `@angular/core@^12`. []()
+
+# 5.0.0-beta.0 (2021-06-24)
+
+- Initial `5.0.0-beta` release.
+
 # 4.2.0 (2021-05-28)
 
 - Updated the data view state to track `columnIds` and added the ability to initially hide columns on views which include column options. [#33](https://github.com/blackbaud/skyux-data-manager/pull/33)
