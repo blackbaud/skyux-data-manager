@@ -1,4 +1,4 @@
-# 5.0.0-beta.1 (2021-06-24)
+# 5.0.0-beta.1 (2021-06-25)
 
 - Added support for `@angular/core@^12`. [#35](https://github.com/blackbaud/skyux-data-manager/pull/35)
 
