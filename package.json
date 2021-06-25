@@ -1,6 +1,6 @@
 {
   "name": "@skyux/data-manager",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-beta.1",
   "description": "SKY UX Data Manager",
   "scripts": {
     "build": "skyux build-public-library",
@@ -21,8 +21,9 @@
   },
   "homepage": "https://github.com/blackbaud/skyux-lists#readme",
   "peerDependencies": {
+    "@angular/common": "^9.1.12 || ^12",
     "@angular/core": "^9.1.12 || ^12",
-    "@skyux/forms": "^4.12.0",
+    "@skyux/forms": "^4.12.0 || ^5.0.0-beta.0",
     "@skyux/indicators": "^4.5.0 || ^5.0.0-beta.0",
     "@skyux/layout": "^4.3.0 || ^5.0.0-beta.0",
     "@skyux/lists": "^4.3.0 || ^5.0.0-beta.0",
