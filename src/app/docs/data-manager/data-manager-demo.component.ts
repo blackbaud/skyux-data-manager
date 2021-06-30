@@ -5,10 +5,6 @@ import {
 } from '@angular/core';
 
 import {
-  SkyUIConfigService
-} from '@skyux/core';
-
-import {
   SkyDataManagerFiltersModalDemoComponent
 } from './data-filter-modal.component';
 
@@ -20,9 +16,9 @@ import {
 @Component({
   selector: 'data-manager-demo',
   templateUrl: './data-manager-demo.component.html',
-  providers: [SkyDataManagerService, {
-    provide: SkyUIConfigService
-  }],
+  providers: [
+    SkyDataManagerService
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataManagerDemoComponent implements OnInit {

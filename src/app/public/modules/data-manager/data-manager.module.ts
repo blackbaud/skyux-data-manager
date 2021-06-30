@@ -11,7 +11,6 @@ import {
 } from '@angular/common';
 
 import {
-  SkyUIConfigService,
   SkyViewkeeperModule
 } from '@skyux/core';
 
@@ -118,9 +117,6 @@ import {
   ],
   entryComponents: [
     SkyDataManagerColumnPickerComponent
-  ],
-  providers: [
-    SkyUIConfigService
   ]
 })
 export class SkyDataManagerModule { }

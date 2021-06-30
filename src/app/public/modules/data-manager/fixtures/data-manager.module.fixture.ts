@@ -16,6 +16,10 @@ import {
 } from '@skyux/theme';
 
 import {
+  SkyDataManagerForRootCompatModule
+} from '../../../../public/modules/shared/data-manager-for-root-compat.module';
+
+import {
   SkyDataManagerModule
 } from '../data-manager.module';
 
@@ -26,6 +30,7 @@ import {
 @NgModule({
   imports: [
     SkyCardModule,
+    SkyDataManagerForRootCompatModule,
     SkyDataManagerModule,
     SkyRepeaterModule,
     SkyToolbarModule
