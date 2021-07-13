@@ -5,6 +5,10 @@ import {
 } from '@angular/core';
 
 import {
+  SkyUIConfigService
+} from '@skyux/core';
+
+import {
   SkyDataManagerService,
   SkyDataManagerState
 } from '@skyux/data-manager';
@@ -17,7 +21,8 @@ import {
   selector: 'app-data-manager-demo',
   templateUrl: './data-manager-demo.component.html',
   providers: [
-    SkyDataManagerService
+    SkyDataManagerService,
+    SkyUIConfigService
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

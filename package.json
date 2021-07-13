@@ -1,6 +1,6 @@
 {
   "name": "@skyux/data-manager",
-  "version": "5.0.0-beta.1",
+  "version": "5.0.0-beta.2",
   "description": "SKY UX Data Manager",
   "scripts": {
     "build": "skyux build-public-library",
