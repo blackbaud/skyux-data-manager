@@ -1,6 +1,6 @@
 {
   "name": "@skyux/data-manager",
-  "version": "5.0.0-beta.1",
+  "version": "5.0.0-beta.2",
   "description": "SKY UX Data Manager",
   "scripts": {
     "build": "skyux build-public-library",
@@ -23,12 +23,12 @@
   "peerDependencies": {
     "@angular/common": "^9.1.12 || ^12",
     "@angular/core": "^9.1.12 || ^12",
-    "@skyux/forms": "^4.12.0 || ^5.0.0-beta.0",
-    "@skyux/indicators": "^4.5.0 || ^5.0.0-beta.0",
-    "@skyux/layout": "^4.3.0 || ^5.0.0-beta.0",
-    "@skyux/lists": "^4.3.0 || ^5.0.0-beta.0",
-    "@skyux/lookup": "^4.5.0 || ^5.0.0-beta.0",
-    "@skyux/modals": "^4.5.0 || ^5.0.0-beta.0"
+    "@skyux/forms": "^5.0.0-beta.0",
+    "@skyux/indicators": "^5.0.0-beta.0",
+    "@skyux/layout": "^5.0.0-beta.0",
+    "@skyux/lists": "^5.0.0-beta.0",
+    "@skyux/lookup": "^5.0.0-beta.0",
+    "@skyux/modals": "^5.0.0-beta.0"
   },
   "dependencies": {},
   "devDependencies": {
@@ -66,7 +66,7 @@
     "@skyux/inline-form": "4.1.1",
     "@skyux/layout": "4.7.1",
     "@skyux/lists": "4.7.2",
-    "@skyux/lookup": "4.15.0",
+    "@skyux/lookup": "4.16.0",
     "@skyux/modals": "4.5.4",
     "@skyux/omnibar-interop": "4.0.1",
     "@skyux/popovers": "4.5.2",

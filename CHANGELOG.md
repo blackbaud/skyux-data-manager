@@ -1,3 +1,7 @@
+# 5.0.0-beta.2 (2021-07-14)
+
+- Added support for `5.0.0-beta.*` versions of SKY UX component libraries. [#37](https://github.com/blackbaud/skyux-data-manager/pull/37)
+
 # 5.0.0-beta.1 (2021-06-25)
 
 - Added support for `@angular/core@^12`. [#35](https://github.com/blackbaud/skyux-data-manager/pull/35)

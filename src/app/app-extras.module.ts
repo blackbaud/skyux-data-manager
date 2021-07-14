@@ -56,18 +56,25 @@ import {
 } from '@skyux/lists';
 
 import {
-  SkyDataManagerModule
-} from './public/public_api';
-
-import {
   SkyDataManagerFiltersModalDemoComponent
 } from './docs/data-manager/data-filter-modal.component';
+
+import {
+  SkyDataManagerForRootCompatModule
+} from './public/modules/shared/data-manager-for-root-compat.module';
+
+import {
+  SkyDataManagerModule
+} from './public/public_api';
 
 import {
   SkyDataManagerFiltersModalVisualComponent
 } from './visual/data-manager/data-filter-modal.component';
 
 @NgModule({
+  imports: [
+    SkyDataManagerForRootCompatModule
+  ],
   exports: [
     AgGridModule,
     SkyAgGridModule,
