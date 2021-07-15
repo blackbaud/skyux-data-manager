@@ -65,7 +65,7 @@ export class DataManagerVisualComponent implements OnInit {
     views: [
       {
         viewId: 'gridView',
-        displayedColumnIds: ['selected', 'name', 'description']
+        displayedColumnIds: ['name', 'description']
       }
     ]
   });
