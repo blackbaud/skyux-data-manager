@@ -123,7 +123,7 @@ export class DataManagerVisualComponent implements OnInit {
 
   constructor(
     private dataManagerService: SkyDataManagerService,
-    @Optional() public themeSvc: SkyThemeService
+    @Optional() private themeSvc: SkyThemeService
   ) {
     this.dataManagerService.getDataStateUpdates('dataManager').subscribe(state => this.dataState = state);
     this.dataManagerService.getActiveViewIdUpdates().subscribe(activeViewId => this.activeViewId = activeViewId);
