@@ -12,6 +12,11 @@ import {
   SkyDataManagerService
 } from '../../public/public_api';
 
+/**
+ * We are using the legacy grid here to avoid potential circular dependencies with pulling our
+ * AG Grid library into this library. We needed this example to be able to see the column picker
+ * in a real-world scenario.
+ */
 @Component({
   selector: 'data-view-legacy-grid',
   templateUrl: './data-view-legacy-grid.component.html',

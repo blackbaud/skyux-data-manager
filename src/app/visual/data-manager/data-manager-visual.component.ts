@@ -1,7 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit
+  OnInit,
+  Optional
 } from '@angular/core';
 
 import {
@@ -122,7 +123,7 @@ export class DataManagerVisualComponent implements OnInit {
 
   constructor(
     private dataManagerService: SkyDataManagerService,
-    public themeSvc: SkyThemeService
+    @Optional() public themeSvc: SkyThemeService
   ) {
     this.dataManagerService.getDataStateUpdates('dataManager').subscribe(state => this.dataState = state);
     this.dataManagerService.getActiveViewIdUpdates().subscribe(activeViewId => this.activeViewId = activeViewId);
