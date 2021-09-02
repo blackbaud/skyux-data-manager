@@ -1,3 +1,7 @@
+# 4.2.1 (2021-07-16)
+
+- Fixed the column selector to have proper spacing between the column's title and description. [#38](https://github.com/blackbaud/skyux-data-manager/pull/38)
+
 # 5.0.0-beta.2 (2021-07-14)
 
 - Added support for `5.0.0-beta.*` versions of SKY UX component libraries. [#37](https://github.com/blackbaud/skyux-data-manager/pull/37)
