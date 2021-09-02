@@ -1,7 +1,6 @@
 import {
   ComponentFixture,
-  TestBed,
-  waitForAsync
+  TestBed
 } from '@angular/core/testing';
 
 import {
@@ -9,7 +8,8 @@ import {
 } from '@skyux/layout';
 
 import {
-  expect
+  expect,
+  expectAsync
 } from '@skyux-sdk/testing';
 
 import {
@@ -99,11 +99,11 @@ describe('SkyDataManagerComponent', () => {
     expect(backToTopController.next).toHaveBeenCalledWith({ type: SkyBackToTopMessageType.BackToTop });
   });
 
-  it('should pass accessibility', waitForAsync(() => {
+  it('should pass accessibility', async () => {
     dataManagerFixture.detectChanges();
 
-    dataManagerFixture.whenStable().then(() => {
-      expect(dataManagerNativeElement).toBeAccessible();
-    });
-  }));
+    await dataManagerFixture.whenStable();
+
+    await expectAsync(dataManagerNativeElement).toBeAccessible();
+  });
 });

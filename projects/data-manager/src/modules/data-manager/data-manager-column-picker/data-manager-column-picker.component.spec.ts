@@ -5,8 +5,13 @@ import {
 } from '@angular/core/testing';
 
 import {
-  expect
+  expect,
+  expectAsync
 } from '@skyux-sdk/testing';
+
+import {
+  SkyLibResourcesService
+} from '@skyux/i18n';
 
 import {
   SkyModalConfiguration,
@@ -27,10 +32,8 @@ import {
 } from './data-manager-column-picker-context';
 
 import {
-  SkyDataManagerColumnPickerSortStrategy,
-  SkyDataManagerModule
+  SkyDataManagerColumnPickerSortStrategy
 } from '../../../public-api';
-import { SkyLibResourcesService } from '@skyux/i18n';
 
 class MockModalInstance {
   public saveResult: any;
@@ -249,7 +252,7 @@ describe('SkyDataManagerColumnPickerComponent', () => {
     expect(dataManagerColumnPickerComponent.columnData).toEqual([column1, column2, column3, column4]);
   });
 
-  it('should pass accessibility', waitForAsync(() => {
-    expect(dataManagerColumnPickerElement).toBeAccessible();
-  }));
+  it('should pass accessibility', async () => {
+    await expectAsync(dataManagerColumnPickerElement).toBeAccessible();
+  });
 });

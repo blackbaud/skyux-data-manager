@@ -6,8 +6,7 @@ import {
   ComponentFixture,
   fakeAsync,
   TestBed,
-  tick,
-  waitForAsync
+  tick
 } from '@angular/core/testing';
 
 import {
@@ -24,6 +23,7 @@ import {
 
 import {
   expect,
+  expectAsync,
   SkyAppTestUtility
 } from '@skyux-sdk/testing';
 
@@ -606,7 +606,7 @@ describe('SkyDataManagerToolbarComponent', () => {
     expect(dataManagerService.updateDataState).not.toHaveBeenCalled();
   });
 
-  it('should pass accessibility', waitForAsync(() => {
-    expect(dataManagerToolbarNativeElement).toBeAccessible();
-  }));
+  it('should pass accessibility', async () => {
+    await expectAsync(dataManagerToolbarNativeElement).toBeAccessible();
+  });
 });
