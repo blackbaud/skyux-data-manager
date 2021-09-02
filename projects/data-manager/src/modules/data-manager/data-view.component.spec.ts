@@ -2,12 +2,12 @@ import {
   ComponentFixture,
   fakeAsync,
   TestBed,
-  tick,
-  waitForAsync
+  tick
 } from '@angular/core/testing';
 
 import {
-  expect
+  expect,
+  expectAsync
 } from '@skyux-sdk/testing';
 
 import {
@@ -78,7 +78,7 @@ describe('SkyDataViewComponent', () => {
     expect(dataViewComponent.isActive).toBe(false);
   });
 
-  it('should pass accessibility', waitForAsync(() => {
-    expect(dataViewNativeElement).toBeAccessible();
-  }));
+  it('should pass accessibility', async () => {
+    await expectAsync(dataViewNativeElement).toBeAccessible();
+  });
 });
