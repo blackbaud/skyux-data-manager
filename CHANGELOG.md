@@ -1,3 +1,7 @@
+# 5.0.0-beta.4 (2021-09-13)
+
+- Updated the peer dependencies. [#43](https://github.com/blackbaud/skyux-data-manager/pull/43)
+
 # 5.0.0-beta.3 (2021-09-02)
 
 - Migrated to Angular CLI. [#41](https://github.com/blackbaud/skyux-data-manager/pull/41)
