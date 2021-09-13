@@ -1,8 +1,4 @@
 import {
-  AgGridModule
-} from 'ag-grid-angular';
-
-import {
   CommonModule
 } from '@angular/common';
 
@@ -13,10 +9,6 @@ import {
 import {
   FormsModule
 } from '@angular/forms';
-
-import {
-  SkyAgGridModule
-} from '@skyux/ag-grid';
 
 import {
   SkyCardModule,
@@ -65,8 +57,6 @@ import {
   imports: [
     CommonModule,
     FormsModule,
-    AgGridModule,
-    SkyAgGridModule,
     SkyCardModule,
     SkyCheckboxModule,
     SkyDataManagerModule,
