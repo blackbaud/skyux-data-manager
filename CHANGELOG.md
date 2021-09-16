@@ -1,3 +1,11 @@
+# 5.0.0-beta.6 (2021-09-16)
+
+- Added bug fixes and features from the `master` branch. [#48](https://github.com/blackbaud/skyux-data-manager/pull/48)
+
+# 4.2.2 (2021-09-16)
+
+- Fixed the column selector button to be responsive on smaller screens. [#46](https://github.com/blackbaud/skyux-data-manager/pull/46)
+
 # 5.0.0-beta.5 (2021-09-15)
 
 - Updated peer dependencies. [#45](https://github.com/blackbaud/skyux-data-manager/pull/45)
