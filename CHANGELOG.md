@@ -1,4 +1,4 @@
-# 5.0.0-beta.5 (2021-09-16)
+# 5.0.0-beta.6 (2021-09-16)
 
 - Added bug fixes and features from the `master` branch. [#48](https://github.com/blackbaud/skyux-data-manager/pull/48)
 
