@@ -62,7 +62,7 @@ export class DataViewRepeaterDemoComponent implements OnInit {
   }
 
   public updateData(): void {
-    let selectedIds = this.dataState.selectedIds || [];
+    let selectedIds = this.dataState && this.dataState.selectedIds || [];
     this.items.forEach(item => {
       item.selected = selectedIds.indexOf(item.id) !== -1;
     });
@@ -141,6 +141,11 @@ export class DataViewRepeaterDemoComponent implements OnInit {
         selectedIds.splice(itemIndex, 1);
       }
     });
+
+    if (this.dataState.onlyShowSelected) {
+      this.displayedItems = [];
+    }
+
     this.dataState.selectedIds = selectedIds;
     this.dataManagerService.updateDataState(this.dataState, this.viewId);
     this.changeDetector.markForCheck();
@@ -158,5 +163,9 @@ export class DataViewRepeaterDemoComponent implements OnInit {
 
     this.dataState.selectedIds = selectedItems;
     this.dataManagerService.updateDataState(this.dataState, this.viewId);
+    if (this.dataState.onlyShowSelected && this.displayedItems) {
+      this.displayedItems = this.displayedItems.filter((item) => item.selected);
+      this.changeDetector.markForCheck();
+    }
   }
 }
