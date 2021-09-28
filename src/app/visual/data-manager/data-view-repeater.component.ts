@@ -159,7 +159,7 @@ export class DataViewRepeaterComponent implements OnInit {
     this.dataState.selectedIds = selectedItems;
     this.dataManagerService.updateDataState(this.dataState, this.viewId);
     if (this.dataState.onlyShowSelected && this.displayedItems) {
-      this.displayedItems = this.displayedItems.filter((item) => item.selected);
+      this.displayedItems = this.displayedItems.filter((itm) => itm.selected);
       this.changeDetector.markForCheck();
     }
   }
