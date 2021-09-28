@@ -22,7 +22,7 @@ export class DataViewRepeaterDemoComponent implements OnInit {
   @Input()
   public items: any[];
 
-  public dataState = new SkyDataManagerState({});
+  public dataState: SkyDataManagerState;
 
   public displayedItems: any[];
 
