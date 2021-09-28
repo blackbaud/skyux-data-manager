@@ -18,18 +18,13 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataViewRepeaterDemoComponent implements OnInit {
-
   @Input()
   public items: any[];
 
   public dataState: SkyDataManagerState;
-
   public displayedItems: any[];
-
   public isActive: boolean;
-
   public viewId = 'repeaterView';
-
   public viewConfig: SkyDataViewConfig = {
     id: this.viewId,
     name: 'Repeater View',

@@ -18,13 +18,18 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataViewRepeaterDemoComponent implements OnInit {
+
   @Input()
   public items: any[];
 
-  public dataState: SkyDataManagerState;
+  public dataState = new SkyDataManagerState({});
+
   public displayedItems: any[];
+
   public isActive: boolean;
+
   public viewId = 'repeaterView';
+
   public viewConfig: SkyDataViewConfig = {
     id: this.viewId,
     name: 'Repeater View',
@@ -57,7 +62,7 @@ export class DataViewRepeaterDemoComponent implements OnInit {
   }
 
   public updateData(): void {
-    let selectedIds = this.dataState && this.dataState.selectedIds || [];
+    let selectedIds = this.dataState.selectedIds || [];
     this.items.forEach(item => {
       item.selected = selectedIds.indexOf(item.id) !== -1;
     });
