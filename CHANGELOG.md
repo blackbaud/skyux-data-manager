@@ -4,7 +4,7 @@
 
 # 4.2.3 (2021-09-29)
 
-- Update implementation examples for only showing selected items [#49](https://github.com/blackbaud/skyux-data-manager/pull/49)
+- Updated implementation examples for only showing selected items. [#49](https://github.com/blackbaud/skyux-data-manager/pull/49)
 
 # 5.0.0-beta.6 (2021-09-16)
 
