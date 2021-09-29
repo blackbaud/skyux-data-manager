@@ -1,3 +1,7 @@
+# 5.0.0-beta.7 (2021-09-29)
+
+- Added bug fixes and features from the `master` branch.
+
 # 4.2.3 (2021-09-29)
 
 - Update implementation examples for only showing selected items [#49](https://github.com/blackbaud/skyux-data-manager/pull/49)
