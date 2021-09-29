@@ -1,18 +1,18 @@
 {
   "name": "@skyux/data-manager",
-  "version": "5.0.0-beta.6",
+  "version": "5.0.0-beta.7",
   "peerDependencies": {
-    "@angular/common": "^12.2.0",
-    "@angular/core": "^12.2.0",
+    "@angular/common": "^12.2.7",
+    "@angular/core": "^12.2.7",
     "@skyux/forms": "^5.0.0-beta.5",
-    "@skyux/indicators": "^5.0.0-beta.2",
+    "@skyux/indicators": "^5.0.0-beta.4",
     "@skyux/layout": "^5.0.0-beta.7",
     "@skyux/lists": "^5.0.0-beta.3",
     "@skyux/lookup": "^5.0.0-beta.2",
-    "@skyux/modals": "^5.0.0-beta.3",
-    "@skyux/i18n": "^5.0.0-beta.6"
+    "@skyux/modals": "^5.0.0-beta.6",
+    "@skyux/i18n": "^5.0.0-beta.7"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.1"
   }
 }
