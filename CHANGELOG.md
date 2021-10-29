@@ -1,3 +1,7 @@
+# 5.0.1 (2021-10-29)
+
+- Appended description to columnIds. [#54](https://github.com/blackbaud/skyux-data-manager/pull/54)
+
 # 5.0.0 (2021-09-30)
 
 ### New features
