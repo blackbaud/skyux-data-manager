@@ -3,19 +3,19 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
-  OnInit
+  OnInit,
 } from '@angular/core';
 
 import {
   SkyDataManagerState,
   SkyDataViewConfig,
-  SkyDataManagerService
+  SkyDataManagerService,
 } from 'projects/data-manager/src/public-api';
 
 @Component({
   selector: 'app-data-view-cards',
   templateUrl: './data-view-cards.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataViewCardsComponent implements OnInit {
   @Input()
@@ -32,26 +32,30 @@ export class DataViewCardsComponent implements OnInit {
     searchEnabled: true,
     searchPlaceholderText: 'Search these cards',
     filterButtonEnabled: true,
-    showSortButtonText: true
+    showSortButtonText: true,
   };
 
   constructor(
     private changeDetector: ChangeDetectorRef,
     private dataManagerService: SkyDataManagerService
-    ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.dataManagerService.initDataView(this.viewConfig);
 
-    this.dataManagerService.getDataStateUpdates(this.viewId).subscribe(state => {
-      this.dataState = state;
-      this.updateData();
-    });
+    this.dataManagerService
+      .getDataStateUpdates(this.viewId)
+      .subscribe((state) => {
+        this.dataState = state;
+        this.updateData();
+      });
   }
 
   public updateData(): void {
     if (this.dataState) {
-      this.displayedItems = this.sortItems(this.filterItems(this.searchItems(this.items)));
+      this.displayedItems = this.sortItems(
+        this.filterItems(this.searchItems(this.items))
+      );
 
       this.changeDetector.detectChanges();
     }
@@ -67,9 +71,9 @@ export class DataViewCardsComponent implements OnInit {
           sortProperty = sortOption.propertyName;
 
         if (a[sortProperty] > b[sortProperty]) {
-          return (descending);
+          return descending;
         } else if (a[sortProperty] < b[sortProperty]) {
-          return (-1 * descending);
+          return -1 * descending;
         } else {
           return 0;
         }
@@ -88,7 +92,10 @@ export class DataViewCardsComponent implements OnInit {
         let property: any;
 
         for (property in item) {
-          if (item.hasOwnProperty(property) && (property === 'name' || property === 'description')) {
+          if (
+            item.hasOwnProperty(property) &&
+            (property === 'name' || property === 'description')
+          ) {
             const propertyText = item[property].toUpperCase();
             if (propertyText.indexOf(searchText) > -1) {
               return true;
@@ -109,10 +116,15 @@ export class DataViewCardsComponent implements OnInit {
     if (filterData && filterData.filters) {
       let filters = filterData.filters;
       filteredItems = items.filter((item: any) => {
-        if (((filters.hideOrange && item.color !== 'orange') || !filters.hideOrange) &&
-            ((filters.type !== 'any' && item.type === filters.type) || (!filters.type || filters.type === 'any'))) {
-              return true;
-            }
+        if (
+          ((filters.hideOrange && item.color !== 'orange') ||
+            !filters.hideOrange) &&
+          ((filters.type !== 'any' && item.type === filters.type) ||
+            !filters.type ||
+            filters.type === 'any')
+        ) {
+          return true;
+        }
         return false;
       });
     }

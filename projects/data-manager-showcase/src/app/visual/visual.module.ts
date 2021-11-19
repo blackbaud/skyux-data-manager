@@ -23,7 +23,7 @@ import { VisualComponent } from './visual.component';
     DataViewCardsComponent,
     DataViewLegacyGridComponent,
     DataViewRepeaterComponent,
-    VisualComponent
+    VisualComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +33,7 @@ import { VisualComponent } from './visual.component';
     SkyE2eThemeSelectorModule,
     SkyModalModule,
     SkyRepeaterModule,
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
-export class VisualModule { }
+export class VisualModule {}

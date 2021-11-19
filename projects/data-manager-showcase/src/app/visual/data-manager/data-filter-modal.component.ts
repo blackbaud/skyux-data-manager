@@ -1,22 +1,17 @@
-import {
-  Component
-} from '@angular/core';
+import { Component } from '@angular/core';
 
-import {
-  SkyModalInstance
-} from '@skyux/modals';
+import { SkyModalInstance } from '@skyux/modals';
 
 import {
   SkyDataManagerFilterData,
-  SkyDataManagerFilterModalContext
+  SkyDataManagerFilterModalContext,
 } from 'projects/data-manager/src/public-api';
 
 @Component({
   selector: 'app-demo-filter-modal-form',
-  templateUrl: './data-filter-modal.component.html'
+  templateUrl: './data-filter-modal.component.html',
 })
 export class SkyDataManagerFiltersModalVisualComponent {
-
   public fruitType: string;
 
   public hideOrange: boolean;
@@ -38,7 +33,7 @@ export class SkyDataManagerFiltersModalVisualComponent {
     result.filtersApplied = this.fruitType !== 'any' || this.hideOrange;
     result.filters = {
       type: this.fruitType,
-      hideOrange: this.hideOrange
+      hideOrange: this.hideOrange,
     };
 
     this.instance.save(result);
