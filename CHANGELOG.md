@@ -1,6 +1,6 @@
 # 5.0.2 (2021-11-19)
 
-- Added support for Prettier code formatting and updated the builder to support StackBlitz. []()
+- Added support for Prettier code formatting and updated the builder to support StackBlitz. [#56](https://github.com/blackbaud/skyux-data-manager/pull/56)
 
 # 5.0.1 (2021-11-01)
 
