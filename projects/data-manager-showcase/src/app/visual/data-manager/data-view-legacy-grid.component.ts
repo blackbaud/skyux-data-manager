@@ -3,13 +3,13 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
-  OnInit
+  OnInit,
 } from '@angular/core';
 
 import {
   SkyDataManagerState,
   SkyDataViewConfig,
-  SkyDataManagerService
+  SkyDataManagerService,
 } from '@skyux/data-manager';
 
 /**
@@ -20,7 +20,7 @@ import {
 @Component({
   selector: 'app-data-view-legacy-grid',
   templateUrl: './data-view-legacy-grid.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataViewLegacyGridComponent implements OnInit {
   @Input()
@@ -30,30 +30,27 @@ export class DataViewLegacyGridComponent implements OnInit {
     {
       id: 'name',
       label: 'Fruit name',
-      description: 'The name of the fruit.'
+      description: 'The name of the fruit.',
     },
     {
       id: 'description',
       label: 'Description',
-      description: 'Some information about the fruit.'
+      description: 'Some information about the fruit.',
     },
     {
       id: 'type',
       label: 'Type',
-      description: 'The type of fruit.'
+      description: 'The type of fruit.',
     },
     {
       id: 'color',
       label: 'Color',
-      description: 'The color of the fruit.'
-    }
+      description: 'The color of the fruit.',
+    },
   ];
 
   public dataState: SkyDataManagerState;
-  public displayedColumns: any[] = [
-    this.columns[0],
-    this.columns[1]
-  ];
+  public displayedColumns: any[] = [this.columns[0], this.columns[1]];
   public displayedItems: any[];
   public isActive: boolean;
   public viewId = 'gridView';
@@ -64,39 +61,47 @@ export class DataViewLegacyGridComponent implements OnInit {
     searchEnabled: true,
     filterButtonEnabled: true,
     columnPickerEnabled: true,
-    columnOptions: this.columns
+    columnOptions: this.columns,
   };
 
   constructor(
     private changeDetector: ChangeDetectorRef,
     private dataManagerService: SkyDataManagerService
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.dataManagerService.initDataView(this.viewConfig);
 
-    this.dataManagerService.getDataStateUpdates(this.viewId).subscribe(state => {
-      this.dataState = state;
-      this.updateData();
-    });
+    this.dataManagerService
+      .getDataStateUpdates(this.viewId)
+      .subscribe((state) => {
+        this.dataState = state;
+        this.updateData();
+      });
 
-    this.dataManagerService.getActiveViewIdUpdates().subscribe(id => {
+    this.dataManagerService.getActiveViewIdUpdates().subscribe((id) => {
       this.isActive = id === this.viewId;
     });
   }
 
   public updateData(): void {
     if (this.dataState) {
-      this.displayedColumns = this.columns
-        .filter(column => this.dataState.getViewStateById(this.viewId).displayedColumnIds.indexOf(column.id) >= 0);
+      this.displayedColumns = this.columns.filter(
+        (column) =>
+          this.dataState
+            .getViewStateById(this.viewId)
+            .displayedColumnIds.indexOf(column.id) >= 0
+      );
       let selectedIds = this.dataState.selectedIds || [];
-      this.items.forEach(item => {
+      this.items.forEach((item) => {
         item.selected = selectedIds.indexOf(item.id) !== -1;
       });
       this.displayedItems = this.filterItems(this.searchItems(this.items));
 
       if (this.dataState.onlyShowSelected) {
-        this.displayedItems = this.displayedItems.filter(item => item.selected);
+        this.displayedItems = this.displayedItems.filter(
+          (item) => item.selected
+        );
       }
 
       this.changeDetector.detectChanges();
@@ -112,7 +117,10 @@ export class DataViewLegacyGridComponent implements OnInit {
         let property: any;
 
         for (property in item) {
-          if (item.hasOwnProperty(property) && (property === 'name' || property === 'description')) {
+          if (
+            item.hasOwnProperty(property) &&
+            (property === 'name' || property === 'description')
+          ) {
             const propertyText = item[property].toUpperCase();
             if (propertyText.indexOf(searchText) > -1) {
               return true;
@@ -133,8 +141,13 @@ export class DataViewLegacyGridComponent implements OnInit {
     if (filterData && filterData.filters) {
       let filters = filterData.filters;
       filteredItems = items.filter((item: any) => {
-        if (((filters.hideOrange && item.color !== 'orange') || !filters.hideOrange) &&
-          ((filters.type !== 'any' && item.type === filters.type) || (!filters.type || filters.type === 'any'))) {
+        if (
+          ((filters.hideOrange && item.color !== 'orange') ||
+            !filters.hideOrange) &&
+          ((filters.type !== 'any' && item.type === filters.type) ||
+            !filters.type ||
+            filters.type === 'any')
+        ) {
           return true;
         }
         return false;
