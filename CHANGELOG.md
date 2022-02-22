@@ -1,3 +1,7 @@
+# 5.0.3 (2022-02-22)
+
+- Fixed public exports to include all items which are publicly referenced by another public item. [#58](https://github.com/blackbaud/skyux-data-manager/pull/58)
+
 # 5.0.2 (2021-11-19)
 
 - Added support for Prettier code formatting and updated the builder to support StackBlitz. [#56](https://github.com/blackbaud/skyux-data-manager/pull/56)
