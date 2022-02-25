@@ -1,3 +1,7 @@
-# @skyux/data-manager Workspace
+# @skyux/data-manager (moved)
 
-For information about `@skyux/data-manager` please visit the library's README file, located at `projects/data-manager/README.md`.
+### *The source code for `@skyux/data-manager` has moved to [blackbaud/skyux](https://github.com/blackbaud/skyux).*
+
+To work with the latest version of `@skyux/data-manager`, go to [blackbaud/skyux](https://github.com/blackbaud/skyux).
+
+The source code for SKY UX 4 remains in the [`4.x.x`](https://github.com/blackbaud/skyux-data-manager/tree/4.x.x) branch of this repo.
